@@ -14,50 +14,75 @@ typedef struct chaine{
 	struct chaine* next;
 }chaine;
 
-chaine* initChaine(int var){
+chaine* initChaine(int nbTask,int delayMin,int delayMax){
 	srand(time(NULL));
 	chaine* liste=NULL;
 	chaine* tmp;
-	for(int i=0;i<var;i++){
-
+	for(int i=0;i<nbTask;i++){
 		tmp=malloc(sizeof(chaine));
 		tmp->t=malloc(sizeof(task));
-		tmp->t->num=var-i;
-		tmp->t->delay=rand()%10;
+		tmp->t->num=nbTask-i;
+		tmp->t->delay=(rand()%delayMax)+delayMin;
 		tmp->t->cycle[0]=1;
 		tmp->t->cycle[1]=1;
 		tmp->next=liste;
 		liste=tmp;
-
 	}
 	return liste;
 }
 
-int FirstFit(int var){
+void freeChaine(chaine* liste){
 	chaine* tmp;
-	chaine* liste=initChaine(var);
-	/*for(int i=0;i<var;i++){
-		printf("task: %d / delay: %d / cycle1: %d / cycle2: %d\n",tab[i].num,tab[i].delay,tab[i].cycle[0],tab[i].cycle[1]);
-	}*/
+	while(liste!=NULL){
+		tmp=liste;
+		liste=liste->next;
+		free(tmp->t);
+		free(tmp);
+	}
+}
 
-	task* FF[2][var];
-	for(int i=0;i<var;i++){
-		FF[0][i]=NULL;
-		FF[1][i]=NULL;
-		
+int compte(chaine* liste,int nbTask){
+	int cpt=0;
+	chaine* tmp=liste;
+	while(tmp!=NULL){
+		tmp=tmp->next;
+		cpt++;
+	}
+	return nbTask-cpt;
+}
+
+
+void afficheTab(int periode,task* tab[2][periode]){
+	for(int i=0;i<periode;i++){
+		printf("%d :",i);
+		if(tab[0][i]==NULL) printf("no | ");
+		else printf(" %d | ",tab[0][i]->num);
+		if(tab[1][i]==NULL) printf("no 	 \n");
+		else printf("%d \n",tab[1][i]->num);
+	}
+}
+
+int FirstFit(int periode,int nbTask,int delayMin,int delayMax){
+	chaine* tmp;
+	chaine* liste=initChaine(nbTask,delayMin,delayMax);
+
+	task* tab[2][periode];
+	for(int i=0;i<periode;i++){
+		tab[0][i]=NULL;
+		tab[1][i]=NULL;
 	}
 	tmp=liste;
 	chaine* last=NULL;
 	int b=0,c;
 	chaine* ftmp;
-	int cpt=0;
+	chaine* place=NULL;
 	while(tmp!=NULL){
 		b=0;c=0;
-		for(int i=0;i<var;i++){
-			if(FF[0][i]==NULL && FF[1][(i+tmp->t->delay)%var]==NULL) {
-				FF[0][i]=tmp->t;
-				FF[1][(i+tmp->t->delay)%var]=tmp->t;
-				i=var;
+		for(int i=0;i<periode;i++){
+			if(tab[0][i]==NULL && tab[1][(i+tmp->t->delay)%periode]==NULL) {
+				tab[0][i]=tmp->t;
+				tab[1][(i+tmp->t->delay)%periode]=tmp->t;
+				i=periode;
 				if(last==NULL){liste=tmp->next;b=1;ftmp=tmp;}
 				else {
 					last->next=tmp->next;
@@ -69,69 +94,33 @@ int FirstFit(int var){
 			}
 		}
 		if(!b)last=tmp;
-		//printf("%d\n",tmp->t->num);
-
 		tmp=tmp->next;
-		if(c){free(ftmp);}
-		//printf("%d ",cpt);
-		cpt++;
-		
-		//printf("%d\n",tmp->t->num);
+		if(c){ftmp->next=place;place=ftmp;}
 	}
-
-/*	for(int i=0;i<var;i++){
-		printf("%d :",i);
-		if(FF[0][i]==NULL) printf("no | ");
-		else printf(" %d | ",FF[0][i]->num);
-		if(FF[1][i]==NULL) printf("no 	 \n");
-		else printf("%d \n",FF[1][i]->num);
-	}*/
-	tmp=liste;
-	if(liste==NULL){ /*printf("Tout les elements ont été placé\n");*/free(liste);free(tmp);
-	for(int i=0;i<var;i++){
-		if(FF[0][i]!=NULL){
-			free(FF[0][i]);
-		}
-	} return var;}
-	else{
-		int i=0;
-		chaine* ftmp;
-		//printf("reste : ");
-		while(tmp!=NULL){
-		//	printf("%d ",tmp->t->num );
-			ftmp=tmp;
-			tmp=tmp->next;
-			i++;
-			free(ftmp->t);
-			free(ftmp);
-		}
-		//printf("\n");
-		for(int i=0;i<var;i++){
-		if(FF[0][i]!=NULL){
-			free(FF[0][i]);
-		}
-	}
-		return var-i;
-	}
+	int cpt=compte(liste,nbTask);
+	//afficheTab(periode,tab);
+	freeChaine(liste);
+	freeChaine(place);
+	return cpt;
 }
 
-float multiFF(int nb,int var){
+float multiFF(int nb,int periode,int nbTask,int delayMin,int delayMax){
 	float cpt=0;
 	for(int i=0;i<nb;i++){
-		cpt+=FirstFit(var);
-
-		printf("%d / %d \n",i,nb);
+		cpt+=FirstFit(periode,nbTask,delayMin,delayMax);
+		//printf("%d / %d \n",i+1,nb);
 	}
 	cpt=cpt/(float)nb;
-	cpt=((float)cpt/(float)var)*100;
+	cpt=((float)cpt/(float)nbTask)*100;
 	return cpt;
 
 
 }
 
 int main(int argc,char** argv){
-	
-	FirstFit(20);
-	printf("%f\n",multiFF(100000,100));
+	FirstFit(1000,1000,0,100);
+	printf("Taux de completion a 100/100 : %f \n",multiFF(10000,100,100,0,100));
+	printf("Taux de completion a 75/100 : %f \n",multiFF(10000,100,75,0,100));
+	printf("Taux de completion a 50/100 : %f \n",multiFF(10000,100,50,0,100));
 	return 0;
 }
