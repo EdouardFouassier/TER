@@ -14,27 +14,28 @@ typedef struct chaine{
 	struct chaine* next;
 }chaine;
 
-int FirstFit(int var){
+chaine* initChaine(int var){
 	srand(time(NULL));
-	task tab[var];
 	chaine* liste=NULL;
 	chaine* tmp;
 	for(int i=0;i<var;i++){
-		tab[i].num=i;
-		tab[i].delay=rand()%10;
-		tab[i].cycle[0]=1;
-		tab[i].cycle[1]=1;
 
 		tmp=malloc(sizeof(chaine));
 		tmp->t=malloc(sizeof(task));
-		tmp->t->num=tab[i].num;
-		tmp->t->delay=tab[i].delay;
-		tmp->t->cycle[0]=tab[i].cycle[0];
-		tmp->t->cycle[1]=tab[i].cycle[1];
+		tmp->t->num=var-i;
+		tmp->t->delay=rand()%10;
+		tmp->t->cycle[0]=1;
+		tmp->t->cycle[1]=1;
 		tmp->next=liste;
 		liste=tmp;
 
 	}
+	return liste;
+}
+
+int FirstFit(int var){
+	chaine* tmp;
+	chaine* liste=initChaine(var);
 	/*for(int i=0;i<var;i++){
 		printf("task: %d / delay: %d / cycle1: %d / cycle2: %d\n",tab[i].num,tab[i].delay,tab[i].cycle[0],tab[i].cycle[1]);
 	}*/
@@ -71,14 +72,14 @@ int FirstFit(int var){
 		//printf("%d\n",tmp->t->num);
 
 		tmp=tmp->next;
-		if(c){free(ftmp->t);free(ftmp);}
+		if(c){free(ftmp);}
 		//printf("%d ",cpt);
 		cpt++;
 		
 		//printf("%d\n",tmp->t->num);
 	}
 
-	/*for(int i=0;i<var;i++){
+/*	for(int i=0;i<var;i++){
 		printf("%d :",i);
 		if(FF[0][i]==NULL) printf("no | ");
 		else printf(" %d | ",FF[0][i]->num);
@@ -86,7 +87,12 @@ int FirstFit(int var){
 		else printf("%d \n",FF[1][i]->num);
 	}*/
 	tmp=liste;
-	if(liste==NULL){ /*printf("Tout les elements ont été placé\n");*/free(liste);free(tmp); return var;}
+	if(liste==NULL){ /*printf("Tout les elements ont été placé\n");*/free(liste);free(tmp);
+	for(int i=0;i<var;i++){
+		if(FF[0][i]!=NULL){
+			free(FF[0][i]);
+		}
+	} return var;}
 	else{
 		int i=0;
 		chaine* ftmp;
@@ -100,6 +106,11 @@ int FirstFit(int var){
 			free(ftmp);
 		}
 		//printf("\n");
+		for(int i=0;i<var;i++){
+		if(FF[0][i]!=NULL){
+			free(FF[0][i]);
+		}
+	}
 		return var-i;
 	}
 }
