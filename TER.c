@@ -104,23 +104,25 @@ int FirstFit(int periode,int nbTask,int delayMin,int delayMax){
 	return cpt;
 }
 
+// Fontion a chier mais je savais pas comment faire autrement
+float completionFF(float cpt, int nb, int nbTask) {
+	return (cpt*100)/((float)nbTask*(float)nb);
+}
+
 float multiFF(int nb,int periode,int nbTask,int delayMin,int delayMax){
 	float cpt=0;
 	for(int i=0;i<nb;i++){
 		cpt+=FirstFit(periode,nbTask,delayMin,delayMax);
 		//printf("%d / %d \n",i+1,nb);
 	}
-	cpt=cpt/(float)nb;
-	cpt=((float)cpt/(float)nbTask)*100;
-	return cpt;
-
-
+	//printf("%f \n",cpt);
+	return completionFF(cpt, nb, nbTask);
 }
 
 int main(int argc,char** argv){
 	FirstFit(1000,1000,0,100);
-	printf("Taux de completion a 100/100 : %f \n",multiFF(10000,100,100,0,100));
-	printf("Taux de completion a 75/100 : %f \n",multiFF(10000,100,75,0,100));
-	printf("Taux de completion a 50/100 : %f \n",multiFF(10000,100,50,0,100));
+	printf("Taux de completion a 100/100 : %f \n",multiFF(1000000,100,100,0,100));
+	//printf("Taux de completion a 75/100 : %f \n",multiFF(10000,100,75,0,100));
+	//printf("Taux de completion a 50/100 : %f \n",multiFF(10000,100,50,0,100));
 	return 0;
 }
