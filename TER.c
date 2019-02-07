@@ -14,6 +14,14 @@ typedef struct chaine{
 	struct chaine* next;
 }chaine;
 
+typedef struct stats{
+	double tauxCompletion;
+	double tauxReussite;
+	double tauxMin;
+	double tauxMax;
+}stats;
+
+
 chaine* initChaine(int nbTask,int delayMin,int delayMax){
 	srand(time(NULL));
 	chaine* liste=NULL;
@@ -62,7 +70,12 @@ void afficheTab(int periode,task* tab[2][periode]){
 	}
 }
 
-int FirstFit(int periode,int nbTask,int delayMin,int delayMax){
+// Fontion a chier mais je savais pas comment faire autrement
+double completionFF(double cpt, int nbTask) {
+	return ((cpt*100)/((double)nbTask));
+}
+
+double FirstFit(int periode,int nbTask,int delayMin,int delayMax){
 	chaine* tmp;
 	chaine* liste=initChaine(nbTask,delayMin,delayMax);
 
@@ -97,32 +110,109 @@ int FirstFit(int periode,int nbTask,int delayMin,int delayMax){
 		tmp=tmp->next;
 		if(c){ftmp->next=place;place=ftmp;}
 	}
-	int cpt=compte(liste,nbTask);
+	double cpt=completionFF((double)compte(liste,nbTask),nbTask);
 	//afficheTab(periode,tab);
 	freeChaine(liste);
 	freeChaine(place);
 	return cpt;
 }
 
-// Fontion a chier mais je savais pas comment faire autrement
-float completionFF(float cpt, int nb, int nbTask) {
-	return (cpt*100)/((float)nbTask*(float)nb);
+double ReverseFirstFit(int periode,int nbTask,int delayMin,int delayMax){
+	chaine* tmp;
+	chaine* liste=initChaine(nbTask,delayMin,delayMax);
+
+	task* tab[2][periode];
+	for(int i=0;i<periode;i++){
+		tab[0][i]=NULL;
+		tab[1][i]=NULL;
+	}
+	tmp=liste;
+	chaine* last=NULL;
+	int b=0,c;
+	chaine* ftmp;
+	chaine* place=NULL;
+	for(int i=0;i<periode;i++){
+		b=0;c=0;
+		tmp=liste;
+		last=NULL;
+		while(tmp!=NULL){
+			b=0;c=0;
+			if(tab[0][i]==NULL && tab[1][(i+tmp->t->delay)%periode]==NULL) {
+				tab[0][i]=tmp->t;
+				tab[1][(i+tmp->t->delay)%periode]=tmp->t;
+				if(last==NULL){liste=tmp->next;b=1;ftmp=tmp;}
+				else {
+					last->next=tmp->next;
+					tmp->next=NULL;
+					ftmp=tmp;
+					tmp=last;
+				}
+				ftmp->next=place;place=ftmp;
+				tmp=NULL;
+			}
+			else{
+				if(!b)last=tmp;
+				tmp=tmp->next;
+			}
+		}
+		
+	}
+	double cpt=completionFF((double)compte(liste,nbTask),nbTask);
+	//afficheTab(periode,tab);
+	freeChaine(liste);
+	freeChaine(place);
+	return cpt;
 }
 
-float multiFF(int nb,int periode,int nbTask,int delayMin,int delayMax){
-	float cpt=0;
+stats multiFF(int algo,int nb,int periode,double taux,int delayMin,int delayMax){
+	double moy=0,val,reussite=0,min=100,max=0;
+	stats stat;
+	int tmpP;
+	srand(time(NULL));
 	for(int i=0;i<nb;i++){
-		cpt+=FirstFit(periode,nbTask,delayMin,delayMax);
-		//printf("%d / %d \n",i+1,nb);
+		tmpP=10+rand()%(periode*2);
+		if(algo==0)val=FirstFit(tmpP,tmpP*taux,delayMin,delayMax);
+		else val=ReverseFirstFit(tmpP,tmpP*taux,delayMin,delayMax);
+		moy+=val;
+		if(val<min)min=val;
+		if(val>max)max=val;
+		if(val==100)reussite++;
 	}
-	//printf("%f \n",cpt);
-	return completionFF(cpt, nb, nbTask);
+	reussite=(reussite/nb)*100;
+	moy=((double)moy/(double)nb);
+	stat.tauxCompletion=moy;
+	stat.tauxReussite=reussite;
+	stat.tauxMin=min;
+	stat.tauxMax=max;
+	return stat;
 }
 
 int main(int argc,char** argv){
-	FirstFit(1000,1000,0,100);
-	printf("Taux de completion a 100/100 : %f \n",multiFF(1000000,100,100,0,100));
-	//printf("Taux de completion a 75/100 : %f \n",multiFF(10000,100,75,0,100));
-	//printf("Taux de completion a 50/100 : %f \n",multiFF(10000,100,50,0,100));
-	return 0;
+//	ReverseFirstFit(100,100,0,100);
+	float temps;
+    clock_t t1, t2;
+ 
+    t1 = clock();
+    printf("\nAlgo First Fit:\n");
+    stats stat=multiFF(0,1000000,100,1.0,0,100);
+	printf("A 100/100 :\nTaux de completion : %f\nTaux de reussite : %f\nTaux minimum : %f\nTaux maximum : %f\n",stat.tauxCompletion,stat.tauxReussite,stat.tauxMin,stat.tauxMax);
+	stat=multiFF(0,1000000,100,0.75,0,100);
+	printf("A 75/100 :\nTaux de completion : %f\nTaux de reussite : %f\nTaux minimum : %f\nTaux maximum : %f\n",stat.tauxCompletion,stat.tauxReussite,stat.tauxMin,stat.tauxMax);
+	stat=multiFF(0,1000000,100,0.50,0,100);
+	printf("A 50/100 :\nTaux de completion : %f\nTaux de reussite : %f\nTaux minimum : %f\nTaux maximum : %f\n",stat.tauxCompletion,stat.tauxReussite,stat.tauxMin,stat.tauxMax);
+	t2 = clock();
+    temps = (float)(t2-t1)/CLOCKS_PER_SEC;
+    printf("temps = %f\n", temps);
+
+    t1 = clock();
+    printf("\nAlgo Reverse First Fit:\n");
+    stat=multiFF(1,1000000,100,1.0,0,100);
+	printf("A 100/100 :\nTaux de completion : %f\nTaux de reussite : %f\nTaux minimum : %f\nTaux maximum : %f\n",stat.tauxCompletion,stat.tauxReussite,stat.tauxMin,stat.tauxMax);
+	stat=multiFF(1,1000000,100,0.75,0,100);
+	printf("A 75/100 :\nTaux de completion : %f\nTaux de reussite : %f\nTaux minimum : %f\nTaux maximum : %f\n",stat.tauxCompletion,stat.tauxReussite,stat.tauxMin,stat.tauxMax);
+	stat=multiFF(1,1000000,100,0.50,0,100);
+	printf("A 50/100 :\nTaux de completion : %f\nTaux de reussite : %f\nTaux minimum : %f\nTaux maximum : %f\n",stat.tauxCompletion,stat.tauxReussite,stat.tauxMin,stat.tauxMax);
+  	t2 = clock();
+    temps = (float)(t2-t1)/CLOCKS_PER_SEC;
+    printf("temps = %f\n", temps);
 }
