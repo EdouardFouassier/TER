@@ -19,8 +19,8 @@ int main(int argc,char** argv){
 		if(i==0)logi=1;
 		else logi=log(i)+1;
 		c=malloc(sizeof(int)*logi);
-		nom="in";
-		nomi=malloc((2+logi)*sizeof(char));
+		nom="data/in";
+		nomi=malloc((7+logi)*sizeof(char));
 		strcpy(nomi,nom);
         sprintf(c,"%d",i);
 		strcat(nomi,c);
