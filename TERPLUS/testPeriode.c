@@ -7,7 +7,7 @@ int main(int argc,char** argv){
 		affichePeriode(periode);
 		printf("\n");
 		scanf("%d",&val);
-		coupePeriode(periode,val,3,19);
+		periode=coupePeriode(periode,val,3,19);
 	}
 	return 0;
 }

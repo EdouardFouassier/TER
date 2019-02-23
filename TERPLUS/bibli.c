@@ -45,79 +45,98 @@ Periode* initPeriode(int begin,int end,Periode* next){
 	return periode;
 }
 
-int coupePeriode(Periode* periode,int milieu,int cycle,int taille){
+Periode* coupePeriode(Periode* periode,int milieu,int cycle,int taille){
 //	affichePeriode(periode);
-	printf("coupe %d %d\n",milieu,cycle);
+	//printf("coupe %d %d\n",milieu,cycle);
 	Periode* tmp=periode;
 	Periode* prec=NULL;
 	int itmp,b=1;
-	printf("coupe %d %d\n",milieu,cycle);
+	//printf("coupe %d %d\n",milieu,cycle);
 	while(tmp!=NULL){
-		if(b==1 && milieu==839){printf("lol %d",tmp->begin);b=0;}
+		//if(b==1 && milieu==839){printf("lol %d",tmp->begin);b=0;}
 		//printf("%d\n",tmp->begin);
 		if(tmp->begin<milieu){	
-			//printf("<");
+		//	printf("<");
 			if(milieu+cycle<tmp->end){
-				printf("<");
+			//	printf("<");
 				tmp->next=initPeriode(milieu+cycle,tmp->end,tmp->next);
 				tmp->end=milieu-1;
 				tmp=NULL;
-				return 1;
+				return periode;
 			}
 			else if((milieu+cycle)==(tmp->end)+1) {
-				printf("=");
+			//	printf("=");
 				tmp->end=milieu-1;
 				tmp=NULL;
-				return 1;
+				return periode;
 			}
 			else if(milieu+cycle>tmp->end && tmp->end==taille && periode->begin==0){
-					printf(">");
+				//	printf(">");
 					itmp=cycle-(tmp->end-milieu)-1;
 					if(((periode->end-periode->begin)+1)>itmp){
+					//	printf(">");
 						tmp->end=milieu-1;
 						periode->begin+=itmp;
 						tmp=NULL;
-						return 1;
+						return periode;
 					}else if(((periode->end-periode->begin)+1)==itmp){
-						periode=periode->next;
-						periode->begin+=itmp;
-						tmp=NULL;
-						return 1;
+					//	printf("=");
+						if(tmp==periode){
+						//	printf("1");
+							
+							periode=NULL;
+						}
+						else {
+						//	printf("2");
+							tmp->end=milieu-1;
+							tmp=periode;
+							periode=periode->next;
+						}
+						free(tmp);
+						return periode;
 					}
 				}
 		}
 		else if(tmp->begin==milieu){
-				printf("=");
+				//printf("=");
 				if(milieu+cycle<tmp->end){
-					printf("<");
+				//	printf("<");
 					tmp->begin=milieu+cycle;
 					tmp=NULL;
-					return 1;
+					return periode;
 				}
 				else if(milieu+cycle==(tmp->end+1)){
-					printf("=");
+			//		printf("=");
 					if(prec!=NULL) prec->next=tmp->next;
 					else periode=periode->next;
 					free(tmp);
-					return 1;
+					return periode;
 				}
 				else if(milieu+cycle>tmp->end && tmp->end==taille && periode->begin==0){
-					printf(">");
+				//	printf(">");
 					itmp=cycle-tmp->end-tmp->begin-1;
 					if(((periode->end-periode->begin)+1)>itmp){
+				//		printf(">");
 						if(prec!=NULL) prec->next=tmp->next;
 						else periode=periode->next;
+						
+						free(tmp);
+						tmp=periode;
 						periode->begin+=itmp;
 						free(tmp);
 						tmp=NULL;
-						return 1;
+						return periode;
 					}else if(((periode->end-periode->begin)+1)==itmp){
-						if(prec!=NULL) prec->next=tmp->next;
-						else periode=periode->next;
-						periode=periode->next;
+					//	printf("=");
+						if(tmp==periode)periode=NULL;
+						else {
+							prec->next=tmp->next;
+							free(tmp);
+							tmp=periode;
+							periode=periode->next;
+						}
 						free(tmp);
-						tmp=NULL;
-						return 1;
+						return periode;
 					}
 				}
 		}
@@ -126,11 +145,11 @@ int coupePeriode(Periode* periode,int milieu,int cycle,int taille){
 		//printf("|\n");
 	}
 	
-	return 0;
+	return NULL;
 }
 
 int verifPeriode(Periode* periode,int milieu,int cycle,int taille){
-	printf("verif %d %d\n",milieu,cycle);
+//	printf("verif %d %d\n",milieu,cycle);
 	Periode* tmp=periode;
 	int itmp;
 	while(tmp!=NULL){
@@ -212,7 +231,7 @@ TaskTab lireData(char* nom,int nbTask){
 TaskTab initChaine(int nbTask,int delayMin,int delayMax){
 	srand(time(NULL));
 	TaskTab tasktab;
-	tasktab.nbTask=nbTask;
+	tasktab.nbTask=nbTask;	
 	tasktab.tab=malloc(sizeof(task)*nbTask);
 	for(int i=0;i<nbTask;i++){
 		tasktab.tab[i].num=i;
@@ -222,17 +241,16 @@ TaskTab initChaine(int nbTask,int delayMin,int delayMax){
 	}
 	return tasktab;
 }
-
-void freeChaine(chaine* liste){
-	chaine* tmp;
+*/
+void freeChaine(Periode* liste){
+	Periode* tmp;
 	while(liste!=NULL){
 		tmp=liste;
-		liste=liste.next;
-		free(tmp.t);
+		liste=liste->next;
 		free(tmp);
 	}
 }
-
+/*
 int compte(tasktab tasktab){
 	int cpt=0;
 	for(int i=0;i<tasktab.nbTask;i++){
