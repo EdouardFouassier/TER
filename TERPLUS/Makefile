@@ -1,4 +1,2 @@
 make:
-	gcc FirstFit.c -o FirstFit
-	#gcc ReverseFirstFit.c -o ReverseFirstFit
-	gcc gen.c -o gen -lm
+	gcc TER.c FirstFit.c algoLourd.c gen.c bibli.c -o TER -lm

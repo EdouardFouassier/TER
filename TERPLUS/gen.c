@@ -1,10 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <string.h>
-#include <math.h>
+#include "gen.h"
 
-int main(int argc,char** argv){
+void gen(int periode,int cycle,int nbFile ){ 
 	FILE* f[100];
 	int logi;
 	char* nom;
@@ -13,9 +9,8 @@ int main(int argc,char** argv){
 	srand(time(NULL));
 	
 	char* c;
-	int cycle=1;
-	if(argc==2)cycle=atoi(argv[1]);
-	for(int i=0;i<100;i++){
+
+	for(int i=0;i<nbFile;i++){
 		if(i==0)logi=1;
 		else logi=log(i)+1;
 		c=malloc(sizeof(int)*logi);
@@ -28,10 +23,11 @@ int main(int argc,char** argv){
 		free(nomi);
 		free(c);
 		fprintf(f[i],"%d\n",cycle);
-		for(int j=0;j<1000;j++){
+		for(int j=0;j<periode;j++){
 
-			val=rand()%1000;
+			val=rand()%periode;
 			fprintf(f[i],"%d\n",val);
 		}
+		fclose(f[i]);
 	}
 }
