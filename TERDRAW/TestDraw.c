@@ -148,7 +148,7 @@ static gboolean on_draw_event(GtkWidget *widget, cairo_t *cr, gpointer data) {
 
 void dataChangeScale(dataInfo* d, int choice) {
   if (choice == 0) { d->scale = d->scale + 0.01; }
-  if (choice == 1 && d->scale > 0) { d->scale = d->scale - 0.01; }
+  if (choice == 1 && d->scale > 0.1) { d->scale = d->scale - 0.01; }
 }
 
 static gboolean scrollScale(GtkWidget *widget, GdkEventScroll *scroll_event, gpointer data) {
@@ -173,6 +173,10 @@ gint key_press_cb(GtkWidget *widget, GdkEventKey *kevent, gpointer data)  {
   if(kevent->keyval == GDK_KEY_s)  { dataChangeTranslate(data, 2); }
   if(kevent->keyval == GDK_KEY_z)  { dataChangeTranslate(data, 3); }
 	if(kevent->keyval == GDK_KEY_r)  { dataChangeTranslate(data, 4); } 
+  
+  if (kevent->keyval == GDK_KEY_e) { dataChangeScale(data, 0); }
+  if (kevent->keyval == GDK_KEY_a) { dataChangeScale(data, 1); }
+
 	gtk_widget_queue_draw(widget);
   
   return TRUE;
