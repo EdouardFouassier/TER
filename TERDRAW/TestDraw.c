@@ -3,13 +3,13 @@
 int main (int argc, char * argv [])
 {
 
-  TaskTab tasktab = lireData("../TERPLUS/data/in0", 100);
+  TaskTab tasktab = lireData("../TERPLUS/data/in0", 10);
   //printf("\n \n %d \n", tasktab.nbTask);
   
-  tasktab = FirstFit(tasktab, 100, 100);
+  tasktab = FirstFit(tasktab, 10, 10);
   // afficheTab(tasktab);
 
-  dataInfo* dataI = initDataInfo(100); // la valeur du initDataInfo c'est la periode
+  dataInfo* dataI = initDataInfo(10); // la valeur du initDataInfo c'est la periode
   dataI->tasktabp = &tasktab;
 
 
@@ -42,7 +42,7 @@ int main (int argc, char * argv [])
   g_signal_connect(G_OBJECT(win), "scroll-event", G_CALLBACK(scrollScale), dataI);
   g_signal_connect(G_OBJECT(win), "key_press_event", G_CALLBACK(key_press_cb), dataI);
 
-  g_signal_connect(G_OBJECT(win), "destroy", G_CALLBACK(gtk_main_quit), NULL);
+  g_signal_connect(G_OBJECT(win), "destroy", G_CALLBACK(onDestroy), dataI);
   gtk_widget_show_all (win);  
   gtk_main ();
   
@@ -64,6 +64,13 @@ int main (int argc, char * argv [])
   d->tasktabp = malloc(sizeof(TaskTab));
 
   return d;
+}
+
+void onDestroy(GtkWidget *widget, gpointer data) {
+	gtk_main_quit();
+	gtk_widget_destroy (widget);
+	free(data);
+	
 }
 
 void makeTask(dataInfo* d, int width, int height, cairo_t * cr) {
@@ -99,31 +106,39 @@ void makeTask(dataInfo* d, int width, int height, cairo_t * cr) {
 
 void makeTask2(dataInfo* d, int width, int height, cairo_t * cr) {
 
-  //printf("width : %d, height : %d", width, height);  
   char* c=malloc(sizeof(int)*(log(42)+1));
   cairo_scale(cr,d->scale,d->scale);
   cairo_translate(cr, d->translate_x, d->translate_y);
-  cairo_set_source_rgb(cr, 0.5, 0, 0);
-
   cairo_rectangle(cr, (-5*(d->tasktabp->nbTask)/10+(width/200.0)/d->scale)*100, (-1.5+(height/200.0)/d->scale)*100, 100*(d->tasktabp->nbTask), 100);
   cairo_rectangle(cr, (-5*(d->tasktabp->nbTask)/10+(width/200.0)/d->scale)*100, (0.5+(height/200.0)/d->scale)*100, 100*(d->tasktabp->nbTask), 100);
   cairo_move_to(cr, (0+(width/200.0)/d->scale)*100-1,(0+(height/200.0)/d->scale)*100-1);
   cairo_show_text(cr, "0");
-  // cairo_rectangle(cr, 100, height/4, 100*(d->tasktabp->nbTask), 80);
-  // cairo_rectangle(cr, 100, 35*height/60, 100*(d->tasktabp->nbTask), 80);
-  cairo_stroke(cr);
+  cairo_stroke_preserve(cr);
 
   for (int i = 0; i<d->tasktabp->nbTask; i++){
     if (d->tasktabp->tab[i].place != -1) {
       cairo_set_source_rgb(cr, 1, 1, 1);
-      cairo_rectangle(cr, (5*(d->tasktabp->tab[i].place)/10+(width/200.0)/d->scale)*100, (-1.5+(height/200.0)/d->scale)*100, 100*(d->tasktabp->tab[i].cycle[0]), 100);
-      cairo_rectangle(cr, (5*((d->tasktabp->tab[i].place+d->tasktabp->tab[i].delay)%d->periode)/10+(width/200.0)/d->scale)*100, (0.5+(height/200.0)/d->scale)*100, 100*(d->tasktabp->tab[i].cycle[1]), 100);
-
+      cairo_rectangle(cr, -50*(d->tasktabp->nbTask)+((d->tasktabp->tab[i].place)+(width/200.0)/d->scale)*100, (-1.5+(height/200.0)/d->scale)*100, 100*(d->tasktabp->tab[i].cycle[0]), 100);
+      cairo_rectangle(cr, -50*(d->tasktabp->nbTask)+(((d->tasktabp->tab[i].place+d->tasktabp->tab[i].delay)%d->periode)+(width/200.0)/d->scale)*100, (0.5+(height/200.0)/d->scale)*100, 100*(d->tasktabp->tab[i].cycle[1]), 100);
+	  
+	  cairo_set_font_size (cr, 75);
       cairo_set_source_rgb(cr, 0, 0, 0);
       sprintf(c,"%d",d->tasktabp->tab[i].num);
-      cairo_move_to(cr, 100+(100*d->tasktabp->tab[i].cycle[0])/2+100*(d->tasktabp->tab[i].place), (height/4)+50 );
+      
+      int move_toXFirstTab;
+      int move_toXSecondTab;
+      
+      if (d->tasktabp->tab[i].num < 10) {
+		  move_toXFirstTab = -50*(d->tasktabp->nbTask)+(100*d->tasktabp->tab[i].cycle[0])/4+((d->tasktabp->tab[i].place)+(width/200.0)/d->scale)*100;
+		  move_toXSecondTab = -50*(d->tasktabp->nbTask)+(100*d->tasktabp->tab[i].cycle[1])/4+(((d->tasktabp->tab[i].place+d->tasktabp->tab[i].delay)%d->periode)+(width/200.0)/d->scale)*100;
+	  }
+	  else {
+		  move_toXFirstTab = -50*(d->tasktabp->nbTask)+/*(100*d->tasktabp->tab[i].cycle[0])/2+*/((d->tasktabp->tab[i].place)+(width/200.0)/d->scale)*100;
+		  move_toXSecondTab = -50*(d->tasktabp->nbTask)+/*(100*d->tasktabp->tab[i].cycle[1])/2+*/(((d->tasktabp->tab[i].place+d->tasktabp->tab[i].delay)%d->periode)+(width/200.0)/d->scale)*100;
+	  }
+      cairo_move_to(cr, move_toXFirstTab, (-0.75+(height/200.0)/d->scale)*100 );
       cairo_show_text(cr, c);
-      cairo_move_to(cr, 100+(100*d->tasktabp->tab[i].cycle[1])/2+100*((d->tasktabp->tab[i].place+d->tasktabp->tab[i].delay)%d->periode), (35*height/60)+50 );
+      cairo_move_to(cr, move_toXSecondTab, (1.25+(height/200.0)/d->scale)*100 );
       cairo_show_text(cr, c);
       cairo_stroke_preserve(cr);
      
@@ -140,8 +155,8 @@ static gboolean on_draw_event(GtkWidget *widget, cairo_t *cr, gpointer data) {
   int width = gtk_widget_get_allocated_width(widget);
   int height = gtk_widget_get_allocated_height(widget);
   
-  makeTask(data, width, height, cr);
-  // makeTask2(data, width, height, cr);
+  // makeTask(data, width, height, cr);
+  makeTask2(data, width, height, cr);
 
   return FALSE;
 } 
@@ -172,17 +187,12 @@ gint key_press_cb(GtkWidget *widget, GdkEventKey *kevent, gpointer data)  {
   if(kevent->keyval == GDK_KEY_d)  { dataChangeTranslate(data, 1); }
   if(kevent->keyval == GDK_KEY_s)  { dataChangeTranslate(data, 2); }
   if(kevent->keyval == GDK_KEY_z)  { dataChangeTranslate(data, 3); }
-	if(kevent->keyval == GDK_KEY_r)  { dataChangeTranslate(data, 4); } 
+  if(kevent->keyval == GDK_KEY_r)  { dataChangeTranslate(data, 4); } 
   
   if (kevent->keyval == GDK_KEY_e) { dataChangeScale(data, 0); }
   if (kevent->keyval == GDK_KEY_a) { dataChangeScale(data, 1); }
 
-	gtk_widget_queue_draw(widget);
+  gtk_widget_queue_draw(widget);
   
   return TRUE;
 }
-
-
-
-
-
