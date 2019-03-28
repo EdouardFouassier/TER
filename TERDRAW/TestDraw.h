@@ -17,6 +17,7 @@ typedef struct dataInfo {
 } dataInfo;
 
 dataInfo* initDataInfo(int periode);
+void onDestroy(GtkWidget *widget, gpointer data);
 
 void makeTask(dataInfo* d, int width, int height, cairo_t * cr);
 void makeTask2(dataInfo* d, int width, int height, cairo_t * cr);
