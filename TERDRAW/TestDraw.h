@@ -6,6 +6,7 @@
 #include <math.h>
 
 #include "../TERPLUS/FirstFit.h"
+#include "../TERPLUS/algoLourd.h"
 
 typedef struct dataInfo {
   double scale;
