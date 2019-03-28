@@ -9,8 +9,9 @@
 #include "gen.h"
 #include "bibli.h"
 
+#include <pthread.h>
 
 void nomF(int i,char nom[]);
-double multi(int algo,int nb,int periode,int nbTask);
+void* multi(void* in);
 
 #endif

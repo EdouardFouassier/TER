@@ -11,24 +11,37 @@ void  nomF(int i,char nom[]){
 	strcat(nom,nomi);
 }
 
-double multi(int algo,int nb,int periode,int nbTask){
+typedef struct entree{
+	int algo;
+	int nb;
+	int periode;
+	int nbTask;
+}entree;
+
+void* multi(void* in){
+	entree* vals=(entree *)in;
 	double cpt=0;
 	TaskTab tasktab;
 	double val=0;
-	
+	int algo=vals->algo;
+	int nb=vals->nb;
+	int periode=vals->periode;
+	int nbTask=vals->nbTask;
 	char nom[50];
 	for(int i=0;i<nb;i++){
 		printf("%d %d \n",nbTask,i);
 		nomF(i,nom);
 		tasktab=lireData(nom,nbTask);
 		//afficheTab(tasktab);
-		if(algo==0)val=completionFF(FirstFit(tasktab,periode,nbTask));
-		else val=completionFF(algoLourd(tasktab,periode,nbTask));
+		if(algo==0)val+=completionFF(FirstFit(tasktab,periode,nbTask));
+		else val+=completionFF(algoLourd(tasktab,periode,nbTask));
 		if(val==100)cpt++;
 		//printf("%f\n",val);
 		//free(tasktab.tab);
 	}
-	return (cpt/nb)*100;
+	double* res=malloc(sizeof(double));
+	res[0]=(cpt/nb)*100;
+	return (void*)res;
 }
 
 int main(int argc,char** argv){
@@ -39,16 +52,32 @@ int main(int argc,char** argv){
 	int maxTask=periode/cycle;
 	gen(periode,cycle,nb);
 	double taux[2][maxTask];
+	pthread_t thread[2][maxTask];
+	entree* vals=malloc(sizeof(entree));
+	vals->algo=0;
+	vals->nb=nb;
+	vals->periode=periode;
 	for(int i=1;i<=maxTask;i++){
 
-		taux[0][i-1]=multi(0,nb,periode,i);
-		taux[1][i-1]=multi(1,nb,periode,i);
+		vals->nbTask=i;
+		pthread_create( &thread[0][i], NULL, multi, (void*) vals);
+		//taux[0][i-1]=multi(0,nb,periode,i);
+		//taux[1][i-1]=multi(1,nb,periode,i);
 	}
-	FILE* statout=fopen("stat.data","w");
 	for(int i=1;i<=maxTask;i++){
-		fprintf(statout,"%d	%f 	%f \n",i,taux[0][i-1],taux[1][i-1]);
+		void* res;
+		pthread_join(thread[0][i],res);
+		taux[0][i]=(double)res;
+		printf("%d %f\n",i,taux[0][i]);
 	}
-	fclose(statout);
+	/*FILE* FFout=fopen("FirstFit.data","w");
+	FILE* ALout=fopen("AlgoLourd.data","w");
+	for(int i=1;i<=maxTask;i++){
+		fprintf(FFout,"%d 	%f \n",i,taux[0][i-1]);
+		fprintf(ALout,"%d 	%f \n",i,taux[1][i-1]);
+	}
+	fclose(FFout);
+	fclose(ALout);*/
 
 	/*
 	float temps;

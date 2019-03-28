@@ -50,7 +50,7 @@ TaskTab algoLourd(TaskTab tasktab,int periodeMax,int nbTask){
 		res.tab[res.nbTask]=tasktab.tab[j];
 		res.nbTask++;
 	}
-	free(tasktab.tab);
+	
 	//double cpt=completionFF(tasktab);
 	//printf("%f\n",cpt );
 	//afficheTab(res);

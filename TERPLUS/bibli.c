@@ -165,13 +165,53 @@ int verifPeriode(Periode* periode,int milieu,int cycle,int taille){
 	return 0;
 }
 
+int verifInter(Periode* periode[2],int milieu,int cycle,int delay,int taille){
+//	//printf("verif %d %d\n",milieu,cycle);
+	Periode* tmp[2];
+	tmp[0]=periode[0];
+	tmp[1]=periode[1];
+	int itmp;
+	int a;
+	int b;
+	int cpt=0;
+	if(periode[0]==NULL || periode[1]==NULL)return cpt;
+	while(tmp!=NULL){
+		tmp[1]=periode[1];
+		while(tmp[1]!=NULL && tmp[1]->begin<=((tmp[0]->begin+delay)%taille+1)){
+				tmp[1]=tmp[1]->next;
+		}
+		if(tmp[1]!=NULL){
+		b=((tmp[0]->begin+delay)%taille+1);
+		for(a=tmp[0]->begin;a<=tmp[0]->end-cycle;a++){
+			if(b+cycle<=tmp[1]->end)cpt++;
+			b++;
+			if(b>tmp[1]->end && tmp[1]->end==taille && periode[1]->begin==0){
+				b=0;
+				tmp[1]=periode[1];
+			}
+			else if(b>tmp[1]->end && tmp[1]->next!=NULL){
+				itmp=tmp[1]->end;
+				tmp[1]=tmp[1]->next;
+				b=tmp[1]->begin;
+				a=a+tmp[1]->begin-itmp;
+			}else if(b>tmp[1]->end && tmp[1]->next!=NULL)return cpt;
+
+
+		}}
+		tmp[0]=tmp[0]->next;
+		////printf("|\n");
+	}
+	
+	return cpt;
+}
+
 void affichePeriode(Periode* periode){
 	Periode* tmp=periode;
 	while(tmp!=NULL){
-		//printf("(%d , %d) ",tmp->begin,tmp->end);
+		printf("(%d , %d) ",tmp->begin,tmp->end);
 		tmp=tmp->next;
 	}
-	//printf("\n");
+	printf("\n");
 }
 
 TaskTab lireData(char* nom,int nbTask){
@@ -209,8 +249,7 @@ TaskTab initChaine(int nbTask,int delayMin,int delayMax){
 		tasktab.tab[i].delay=(rand()%delayMax)+delayMin;
 		tasktab.tab[i].cycle[0]=1;
 		tasktab.tab[i].cycle[1]=1;
-	}
-	return tasktab;
+	}	return tasktab;
 }
 */
 void freeChaine(Periode* liste){
@@ -238,6 +277,11 @@ void afficheTab(TaskTab tasktab){
 
 double completionFF(TaskTab tasktab) {
 	double cpt=0;
-	for(int i=0;i< tasktab.nbTask;i++) if(tasktab.tab[i].place!=-1)cpt++;
-	return cpt*100/tasktab.nbTask;
+	for(int i=0;i< tasktab.nbTask;i++) {
+		if(tasktab.tab[i].place!=-1)cpt++;
+	}
+	printf("%f\n",(cpt*100)/tasktab.nbTask);
+	afficheTab(tasktab);
+	free(tasktab.tab);
+	return (cpt*100)/tasktab.nbTask;
 }
