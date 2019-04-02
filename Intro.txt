@@ -1,8 +1,13 @@
-De nos jour les échanges par les différents réseau sont centralisé  dans des base de données distante ou cloud.
+Dans le cadre du module TER du S2 Master Informatique à l’UVSQ, nous avons eu l’occasion de réaliser un projet sous la direction de Mr Yann Strozecki et Mael Guiraud.
+Nous avons choisi, parmi les sujets proposés, le sujet "Algorithme glouton de remplissage" car c'est une sujet qui demande une bonne compréhension de l'algorithmique ce qui nous a beaucoup intéressé.
+
+De nos jour les échanges par les différents réseaux sont centralisés dans des bases de données distante ou cloud.
 Pour gagner en efficacité il faut minimisé la latence lors de l'envoie d'un message vers un cloud.
-Nous utilisons un modèle ou les messages sont envoyés periodiquement et le temps entre l'envoie et la reception est fixe.
-Dans ce modèle il y a deux periodes de taille P, l'envoie du message est placé sur la première periode et la réception sur la seconde après une delay.
-Il faut donc réussir a placer un maximum de messages dans la periode.
+
+L'objectif de ce projet est de concevoir et comparer des algorithmes gloutons qui permettent de placer au mieux des tâches periodiques avec des contraintes portant sur les paires de tâches.
+Pour cela nous utilisons un modèle où les tâches sont envoyés periodiquement et le temps entre l'envoie et la reception est fixe.
+Dans ce modèle il y a deux periodes de taille P, l'envoie du tâches est placé sur la première periode et la réception sur la seconde après un delai.
+Il faut donc réussir a placer un maximum de tâches dans la periode.
 
 Nous utilisons des structures:
 La structure Periode représentant les intervales disponibles d'une periode.
