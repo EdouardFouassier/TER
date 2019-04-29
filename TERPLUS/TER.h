@@ -10,6 +10,10 @@
 #include "bibli.h"
 
 
+#include<omp.h>
+
+
+
 void nomF(int i,char nom[]);
 double multi(int algo,int nb,int periode,int nbTask);
 

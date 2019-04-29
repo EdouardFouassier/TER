@@ -165,6 +165,23 @@ int verifPeriode(Periode* periode,int milieu,int cycle,int taille){
 	return 0;
 }
 
+int comptePeriode(Periode* periode[2],task t,int taille){
+	int cpt=0;
+	int tmp=periode[0]->begin+t.delay;
+	Periode* tmpP1=periode[1];
+	Periode* tmpP0=periode[0];
+	int min=0;
+	if(tmpP0->end-tmpP0->begin+1>=t.cycle[0]){
+		while(tmpP1->begin<=tmp || tmpP1==NULL)tmpP0=tmpP0->next;//tmpP0->end-tmpP0->begin-tmP0.cycle[0]+2
+		if(tmpP1!=NULL && (tmpP1->end-tmp+1>=t.cycle[0])){
+			if(tmpP0->end-tmpP0->begin-t.cycle[0]+2>tmpP1->end-tmp+1-t.cycle[0]+2) cpt+=tmpP1->end-tmp+1-t.cycle[0]+2;
+			else tmpP0->end-tmpP0->begin-t.cycle[0]+2;
+		}	
+		
+	}
+	return 0;
+}
+
 int verifInter(Periode* periode[2],int milieu,int cycle,int delay,int taille){
 //	//printf("verif %d %d\n",milieu,cycle);
 	Periode* tmp[2];
@@ -220,14 +237,14 @@ TaskTab lireData(char* nom,int nbTask){
 	//printf("%s\n",nom);
 	FILE* f=fopen(nom,"r");
 	//if(f==NULL)printf("NULL");
-	fscanf(f,"%d\n",&cycle);
+	if(fscanf(f,"%d\n",&cycle)==1);
 	//printf("%d\n",cycle);
 	TaskTab tasktab;
 	tasktab.nbTask=nbTask;
 	tasktab.tab=malloc(sizeof(task)*nbTask);
 	int val;
 	for(int i=0;i<nbTask;i++){
-		fscanf(f,"%d\n",&val);
+		if(fscanf(f,"%d\n",&val)==1);
 		tasktab.tab[i].num=i;
 		//printf("%d\n",val);
 		tasktab.tab[i].delay=val;
@@ -238,20 +255,28 @@ TaskTab lireData(char* nom,int nbTask){
 	fclose(f);
 	return tasktab;
 }
-/*
-TaskTab initChaine(int nbTask,int delayMin,int delayMax){
-	srand(time(NULL));
-	TaskTab tasktab;
-	tasktab.nbTask=nbTask;	
-	tasktab.tab=malloc(sizeof(task)*nbTask);
+
+chaine* initChaine(char* nom,int nbTask){
+	chaine* liste=NULL;
+	FILE* f=fopen(nom,"r");
+	chaine* tmp;
+	int cycle=0;
+	int val;
+	if(fscanf(f,"%d\n",&cycle)==1);
 	for(int i=0;i<nbTask;i++){
-		tasktab.tab[i].num=i;
-		tasktab.tab[i].delay=(rand()%delayMax)+delayMin;
-		tasktab.tab[i].cycle[0]=1;
-		tasktab.tab[i].cycle[1]=1;
-	}	return tasktab;
+		if(fscanf(f,"%d\n",&val)==1);
+		tmp=malloc(sizeof(chaine));
+		tmp->t=malloc(sizeof(task));
+		tmp->t->num=nbTask-i;
+		tmp->t->delay=val;
+		tmp->t->cycle[0]=cycle;
+		tmp->t->cycle[1]=cycle;
+		tmp->next=liste;
+		liste=tmp;
+	}
+	return liste;
 }
-*/
+
 void freeChaine(Periode* liste){
 	Periode* tmp;
 	while(liste!=NULL){
@@ -260,14 +285,14 @@ void freeChaine(Periode* liste){
 		free(tmp);
 	}
 }
-/*
-int compte(tasktab tasktab){
+
+int compte(TaskTab tasktab){
 	int cpt=0;
 	for(int i=0;i<tasktab.nbTask;i++){
-		if(tasktab.tab.place!=-1)cpt++;
+		if(tasktab.tab->place!=-1)cpt++;
 	}
 	return cpt;
-}*/
+}
 
 
 void afficheTab(TaskTab tasktab){
@@ -280,8 +305,8 @@ double completionFF(TaskTab tasktab) {
 	for(int i=0;i< tasktab.nbTask;i++) {
 		if(tasktab.tab[i].place!=-1)cpt++;
 	}
-	printf("%f\n",(cpt*100)/tasktab.nbTask);
-	afficheTab(tasktab);
+	//printf("%f\n",(cpt*100)/tasktab.nbTask);
+	//afficheTab(tasktab);
 	free(tasktab.tab);
 	return (cpt*100)/tasktab.nbTask;
 }
