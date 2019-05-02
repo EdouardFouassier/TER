@@ -36,6 +36,7 @@ typedef struct periode{
 	int end; // exclut
 }Periode;
 
+void copyPeriode(Periode* periode[2],Periode* periodecpy[2]);
 Periode* initPeriode(int begin,int end,Periode* next);
 Periode* coupePeriode(Periode* periode,int milieu,int cycle,int taille);
 int verifPeriode(Periode* periode,int milieu,int cycle,int taille);
