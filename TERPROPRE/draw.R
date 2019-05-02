@@ -7,10 +7,12 @@ attach(data);
 nbTask = V1
 TauxFF = V2
 TauxAL = V3
+TauxASL = V4
 
 
-plot(nbTask, TauxFF, type = "n", ylim = range(c(TauxFF, TauxAL)), xlab = "Nombre de taches", ylab = "Taux de complétion")
+plot(nbTask, TauxFF, type = "n", ylim = range(c(TauxFF, TauxAL, TauxASL)), xlab = "Nombre de taches", ylab = "Taux de complétion")
 lines(nbTask, TauxFF, col = "blue")
 lines(nbTask, TauxAL, col = "red")
-legend("topright", col=c("blue", "red"), legend=c("TauxFF", "TauxAL"), lty=1:1, box.lty=0)
+lines(nbTask, TauxASL, col = "green")
+legend("topright", col=c("blue", "red", "green"), legend=c("TauxFF", "TauxAL", "TauxASL"), lty=1:1, box.lty=0)
 

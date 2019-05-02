@@ -19,7 +19,9 @@ double multi(int algo,int nb,int periode,int nbTask){
 		free(nom);
 		//afficheTab(tasktab);
 		if(algo==0)val=completionFF(FirstFit(tasktab,periode,nbTask));
-		else val=completionFF(algoLourd(tasktab,periode,nbTask));
+		else {	if (algo == 1) val=completionFF(algoLourd(tasktab,periode,nbTask));
+				else val=completionFF(algoSuperLourd(tasktab,periode));
+		}
 		if(val==100)cpt++;
 		//printf("%f\n",val);
 		//free(tasktab.tab);
@@ -39,7 +41,7 @@ int main(int argc,char** argv){
 	
 	int maxTask=periode/cycle;
 	gen(periode,cycle,nb);
-	double taux[2][maxTask];
+	double taux[3][maxTask];
 	int i=1;
 	
 	#pragma omp parallel for private(i)
@@ -53,12 +55,13 @@ int main(int argc,char** argv){
 		moyenne2+=taux[1][i-1];
 		t1 = clock();
 		temps2 += (float)(t1-t2)/CLOCKS_PER_SEC;
+		taux[2][i-1]=multi(2,nb,periode,i);
 	}
 	
 	
 	FILE* statout=fopen("stat.data","w");
 	for(int i=1;i<=maxTask;i++){
-		fprintf(statout,"%d	%f 	%f \n",i,taux[0][i-1],taux[1][i-1]);
+		fprintf(statout,"%d	%f 	%f  %f\n",i,taux[0][i-1],taux[1][i-1], taux[2][i-1]);
 	}
 	fclose(statout);
    	temps1=temps1/maxTask;
@@ -84,4 +87,5 @@ int main(int argc,char** argv){
   	t2 = clock();
     temps = (float)(t2-t1)/CLOCKS_PER_SEC;
     printf("temps = %f\n", temps);*/
+
 }

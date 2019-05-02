@@ -95,14 +95,17 @@ script:	$(CLEAN) $(EXEC)
 		rm Rplots.pdf
 		xdg-open GrosTry.pdf
 
-TER: bibli.o gen.o FirstFit.o algoLourd.o TER.o
+TER: bibli.o gen.o FirstFit.o algoLourd.o algoSuperLourd.o TER.o
 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS) 
 
-TER.o: bibli.h gen.h FirstFit.h algoLourd.h
+TER.o: bibli.h gen.h FirstFit.h algoLourd.h algoSuperLourd.h 
 
 algoLourd.o: bibli.h 
 
 FirstFit.o: bibli.h
+
+algoSuperLourd.o: bibli.h 
+
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(LDFLAGS) -c $< -o $@

@@ -4,7 +4,4 @@
 
 TaskTab algoLourd(TaskTab tasktab,int periodeMax,int nbTask);
 
-
-
-
 #endif

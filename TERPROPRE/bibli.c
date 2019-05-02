@@ -10,6 +10,61 @@ Periode* initPeriode(int begin,int end,Periode* next){
 	return periode;
 }
 
+void copyPeriode(Periode* periode[2],Periode* periodecpy[2]){
+	int aff=0;
+	if(aff)printf("check 5\n");
+	Periode* tmp=periode[0];
+	if(aff)printf("check -4\n");
+	Periode* tmp2;
+	if(aff)printf("check -3\n");
+	Periode* tmp3=NULL;
+	if(aff)printf("check -2\n");
+	tmp2=initPeriode(tmp->begin,tmp->end,NULL);
+	if(aff)printf("check -1\n");
+	periodecpy[0]=tmp2;
+	if(aff)printf("check 0\n");
+	if(tmp->next!=NULL){
+		if(aff)printf("check 1\n");
+		tmp2->next=tmp3;
+		if(aff)printf("check 2\n");
+		tmp=tmp->next;
+		if(aff)printf("check 3\n");
+		tmp3=initPeriode(tmp->begin,tmp->end,NULL);
+		if(aff)printf("check 4\n");
+	
+	while(tmp!=NULL){
+		if(aff)printf("check 5\n");
+		tmp2->next=tmp3;
+		tmp2=tmp2->next;
+		if(aff)printf("check 6\n");
+		tmp=tmp->next;
+		if(aff)printf("check 6.5\n");
+		if(tmp!=NULL)tmp3=initPeriode(tmp->begin,tmp->end,NULL);
+		if(aff)printf("check 7\n");
+	}
+	}
+	if(aff)printf("check 0.2\n");
+	tmp=periode[1];
+	tmp2=initPeriode(tmp->begin,tmp->end,NULL);
+	periodecpy[1]=tmp2;
+	if(aff)printf("check 0.3\n");
+	if(tmp->next!=NULL){
+		if(aff)printf("check 1.2\n");
+		tmp2->next=tmp3;
+		if(aff)printf("check 2.2\n");
+		tmp=tmp->next;
+		if(aff)printf("check 3.2\n");
+		tmp3=initPeriode(tmp->begin,tmp->end,NULL);
+	if(aff)printf("check 4.2\n");
+	while(tmp!=NULL){
+		tmp2->next=tmp3;
+		tmp2=tmp2->next;
+		tmp=tmp->next;
+		if(tmp!=NULL)tmp3=initPeriode(tmp->begin,tmp->end,NULL);
+	}}
+	if(aff)printf("check 0.4\n");
+}
+
 Periode* coupePeriode(Periode* periode,int milieu,int cycle,int taille){
 //	affichePeriode(periode);
 	////printf("coupe %d %d\n",milieu,cycle);

@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include "algoLourd.h"
+#include "algoSuperLourd.h"
 #include "FirstFit.h"
 #include "gen.h"
 #include "bibli.h"
