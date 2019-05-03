@@ -12,7 +12,7 @@ double multi(int algo,int nb,int periode,int nbTask){
 	for(i=0;i<nb;i++){
 		if(i==0)logi=1;
 		else logi=log(i)+1;
-		printf("1 %d %d %d\n",nbTask,i,omp_get_thread_num());
+		//printf("1 %d %d %d\n",nbTask,i,omp_get_thread_num());
 		nom=malloc(sizeof(int)*logi+7);
 		sprintf(nom,"data/in%d",i);
 		tasktab=lireData(nom,nbTask);

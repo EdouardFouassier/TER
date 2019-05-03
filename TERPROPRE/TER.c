@@ -34,7 +34,7 @@ double multi(int algo,int nb,int periode,int nbTask){
 int main(int argc,char** argv){
 	//affichePeriode(periodes[0]);
 //	printf("\n");
-	float temps1=0,temps2=0,moyenne1=0,moyenne2=0,acc,amelio,eff;
+	float temps1=0,temps2=0,temps3=0,moyenne1=0,moyenne2=0,moyenne3=0,acc1,acc2,amelio1,amelio2,eff1,eff2;
     clock_t t1, t2;
 
 	int periode=atoi(argv[1]),cycle=atoi(argv[3]),nb=atoi(argv[4]),nbTask=atoi(argv[2]);
@@ -56,6 +56,8 @@ int main(int argc,char** argv){
 		t1 = clock();
 		temps2 += (float)(t1-t2)/CLOCKS_PER_SEC;
 		taux[2][i-1]=multi(2,nb,periode,i);
+		t2 = clock();
+		temps3 += (float)(t2-t1)/CLOCKS_PER_SEC;
 	}
 	
 	
@@ -66,12 +68,17 @@ int main(int argc,char** argv){
 	fclose(statout);
    	temps1=temps1/maxTask;
    	temps2=temps2/maxTask;
+   	temps2=temps2/maxTask;
    	moyenne1=moyenne1/maxTask;
    	moyenne2=moyenne2/maxTask;
-   	acc=(temps2/temps1);	
-   	amelio=(moyenne2/moyenne1);
-   	eff=amelio/acc;
-    printf("temps FirstFit= %f \n temps algoLourd= %f \n acceleration= %f \n reussite FirstFit= %f \n reussite algoLourd=%f \n amelioration= %f \n Efficacité= %f \n ", temps1,temps2,acc,moyenne1,moyenne2,amelio,eff);
+   	moyenne3=moyenne3/maxTask;
+   	acc1=(temps2/temps1);	
+   	acc2=(temps3/temps1);	
+   	amelio1=(moyenne2/moyenne1);
+   	amelio2=(moyenne3/moyenne1);
+   	eff1=amelio1/acc1;
+   	eff2=amelio2/acc2;
+    printf("temps FirstFit= %f \n temps algoLourd= %f \n temps algoSuperLourd= %f \n acceleration algoLourd= %f \n acceleration algoSuperLourd= %f \n reussite FirstFit= %f \n reussite algoLourd=%f \n reussite algoSuperLourd=%f \n amelioration algoLourd= %f \n amelioration algoSuperLourd= %f \n Efficacité algoLourd= %f \n Efficacité algoSuperLourd= %f \n ", temps1,temps2,temps3,acc1,acc2,moyenne1,moyenne2,moyenne3,amelio1,amelio2,eff1,eff2);
 	/*
 	float temps;
     clock_t t1, t2;

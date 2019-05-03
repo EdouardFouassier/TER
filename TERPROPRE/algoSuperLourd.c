@@ -26,12 +26,14 @@ TaskTab algoSuperLourd(TaskTab tasktab,int periodeMax) {
 
         cptplace(tasktab, periodeMax, periode, cptAvant);
         Periode* newPeriode[2];
-        copyPeriode(periode, newPeriode);
-
-        for (int j = 0; j<tasktab.nbTask; j++) {
-
+         int cptApres[tasktab.nbTask];
+         int j,i;
+        //#pragma omp parallel for private(i,j,newPeriode,cptApres)
+        for (j = 0; j<tasktab.nbTask; j++) {
+            gene[j]=0;
             if (tasktab.tab[j].place == -1) {
-                for (int i = 0; i<periodeMax; i++) {
+                copyPeriode(periode, newPeriode);
+                for (i = 0; i<periodeMax; i++) {
                     if(verifPeriode(newPeriode[0],i,tasktab.tab[j].cycle[0],periodeMax-1) && verifPeriode(newPeriode[1],(i+tasktab.tab[j].delay)%periodeMax,tasktab.tab[j].cycle[1],periodeMax-1)) {
                         newPeriode[0]=coupePeriode(newPeriode[0],i,tasktab.tab[j].cycle[0],periodeMax-1);
                         newPeriode[1]=coupePeriode(newPeriode[1],(i+tasktab.tab[j].delay)%periodeMax,tasktab.tab[j].cycle[1],periodeMax-1);
@@ -39,7 +41,7 @@ TaskTab algoSuperLourd(TaskTab tasktab,int periodeMax) {
                     }
 		        }
 
-                int cptApres[tasktab.nbTask];
+               
                 cptplace(tasktab, periodeMax, newPeriode, cptApres);
 
                 for (int i = 0; i < tasktab.nbTask; i++) {
@@ -47,6 +49,8 @@ TaskTab algoSuperLourd(TaskTab tasktab,int periodeMax) {
                 }
 
                 if (gene[min] > gene[j]) min = j; 
+                free(newPeriode[0]);
+                free(newPeriode[1]);
             }           
         }
 
@@ -61,14 +65,13 @@ TaskTab algoSuperLourd(TaskTab tasktab,int periodeMax) {
 
         gene[min] = periodeMax;
 
-        free(newPeriode[0]);
-        free(newPeriode[1]);
+        
     }
 
     return tasktab;
 }
 
-/*int main(int argc,char** argv){
+int main(int argc,char** argv){
     printf("Tes morts\n");
     char* nom;
     nom=malloc(sizeof(char)*8);
@@ -76,8 +79,8 @@ TaskTab algoSuperLourd(TaskTab tasktab,int periodeMax) {
     printf("Truc %s\n",nom);
 	TaskTab tasktab = lireData(nom, 35);
     free(nom);
-    algoLourd(tasktab,50000);
+    algoSuperLourd(tasktab,50000);
     afficheTab(tasktab);
 	free(tasktab.tab);
 	return 0;
-}*/
+}

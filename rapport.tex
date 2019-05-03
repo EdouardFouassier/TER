@@ -1,0 +1,79 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[right=2.5cm, left=2.5cm, bottom=4cm, top=3cm]{geometry}
+\usepackage[french]{babel}
+\usepackage{textcomp}
+\usepackage{graphicx}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage{lmodern}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\author{Rémi Navarro - 21401257\ Edouard Fouassier - 21400750}
+\title{TER}
+\begin{document}
+\maketitle
+\section{Introdution}
+Dans le cadre du module TER du S2 Master Informatique à l’UVSQ, nous avons eu l’occasion de réaliser un projet sous la direction de Mr Yann Strozecki et Mael Guiraud.
+Nous avons choisi, parmi les sujets proposés, le sujet "Algorithme glouton de remplissage" car c'est une sujet qui demande une bonne compréhension de l'algorithmique ce qui nous a beaucoup intéressé.
+
+De nos jour les échanges par les différents réseaux sont centralisés dans des datacenters ou cloud.
+Pour gagner en efficacité il faut minimisé la latence lors de l'envoie d'un message vers un cloud.
+
+L'objectif de ce projet est de concevoir et comparer des algorithmes gloutons qui permettent de placer au mieux des tâches periodiques avec des contraintes portant sur les paires de tâches.
+Pour cela nous utilisons un modèle où les tâches sont envoyés periodiquement et le temps entre l'envoie et la reception est fixe.
+Dans ce modèle il y a deux periodes de taille P, l'envoie du tâches est placé sur la première periode et la réception sur la seconde après un delai.
+Il faut donc réussir a placer un maximum de tâches dans la periode.
+
+\section{Structures de données}
+La structure Periode représentant les intervales disponibles d'une periode.\
+Periode:
+    entier begin. Le debut de la periode libre.
+    entier end. La fin de la periode libre.
+    Periode next. La periode libre suivante.
+
+La structure Tasktab représente un tableau de tâches.\
+Tasktab:
+    tableau de tache tab. 
+    entier taille.
+Task:
+    entier num. Le numero de la tache pour l'identifier.
+    entier delay. Le delai avant le retour sur la dexime periode.
+    un tableau de 2 entier cycle. Le temps occupé sur la première et deuxième periode.
+    entier place. La place dans la periode, son début sur la première periode, si la tache n'est pas placé cette valeur est à -1.
+
+\section{Algorithmes}
+
+\begin{algorithm}
+    \caption{FirstFit}
+    \begin{algorithmic}
+    \REQUIRE $n \geq 0 \vee x \neq 0$
+    \RETURN $y = x^n$
+    \STATE $y \leftarrow 1$
+    \IF{$n < 0$}
+    \STATE $X \leftarrow 1 / x$
+    \STATE $N \leftarrow -n$
+    \ELSE
+    \STATE $X \leftarrow x$
+    \STATE $N \leftarrow n$
+    \ENDIF
+    \WHILE{$N \neq 0$}
+    \IF{$N$ is even}
+    \STATE $X \leftarrow X \times X$
+    \STATE $N \leftarrow N / 2$
+    \ELSE[$N$ is odd]
+    \STATE $y \leftarrow y \times X$
+    \STATE $N \leftarrow N - 1$
+    \ENDIF
+    \ENDWHILE
+    \end{algorithmic}
+\end{algorithm}
+
+\section{Conclusion}
+Dans le cadre du module TER du S2 Master Informatique à l’UVSQ, nous avons eu l’occasion de réaliser un projet sous la direction de Mr Yann Strozecki et Mael Guiraud.
+Nous avons choisi, parmi les sujets proposés, le sujet "Algorithme glouton de remplissage" car c'est une sujet qui demande une bonne compréhension de l'algorithmique ce qui nous a beaucoup intéressé.
+
+De nos jour les échanges par les différents réseaux sont centralisés dans des datacenters ou cloud.
+Pour gagner en efficacité il faut minimisé la latence lors de l'envoie d'un message vers un cloud.
+\end{document}
