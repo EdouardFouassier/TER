@@ -21,6 +21,21 @@ Tasktab:
 	tableau de tache tab. 
 	entier taille.
 
+Dans un premier temps nous utilisions les structures suivantes:
+chaine:
+    Task t. une tache
+    chaine next; la tache suivante.
+
+La periode était stocké dans deux tableaux d'entier, nous écrivions le numéro de la tache dans la ou les cases qu'elle occupait.
+Mais comme seul les espaces disponibles de la periode nous interesse, cette structure n'était pas optimale.
+Nous sommes donc passé a une structure représentant les espaces libres de la periode sous forme d'une chaine.
+Une periode initiale de taille 10 est passé de
+[0,0,0,0,0,0,0,0,0,0] à [0,9]
+et avec une tache de taille deux placé en 5
+[0,0,0,0,0,1,1,0,0,0] à [0,4]->[6,9]
+Les taches ne sont plus stockés dans une liste mais dans un tableau.
+Cela a permis de réduire la méméoire utilisé et d'augmenter la taille des tests effectués.
+
 Task:
 	entier num. Le numero de la tache pour l'identifier.
 	entier delay. Le delai avant le retour sur la dexime periode.
@@ -38,7 +53,7 @@ FirstFit:
 
 
 AlgoLourd:
-|	compteurMin=100
+|	compteurMin=PeriodeMax
 |	tacheMin=0
 |	libreMin=0;
 |	Pour chaque tache

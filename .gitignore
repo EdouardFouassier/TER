@@ -1,0 +1,10 @@
+Rapport/*
+!Rapport/Rapport.pdf
+!Rapport/Rapport.tex
+
+TERPROPRE/*
+!TERPROPRE/*.c
+!TERPROPRE/*.h
+!TERPROPRE/data
+!TERPROPRE/*.R
+!TERPROPRE/*.pdf
