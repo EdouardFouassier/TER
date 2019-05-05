@@ -31,7 +31,7 @@ double multi(int algo,int nb,int periode,int nbTask){
 
 int main(int argc,char** argv){
 	//affichePeriode(periodes[0]);
-//	printf("\n");
+	//	printf("\n");
 	float temps;
     clock_t t1, t2;
 
@@ -43,7 +43,7 @@ int main(int argc,char** argv){
 	double taux[2][maxTask];
 	int i=1;
 	
-	#pragma omp parallel for private(i)
+	//#pragma omp parallel for private(i)
 	for(i=1;i<=maxTask;i++){
 		taux[0][i-1]=multi(0,nb,periode,i);
 		taux[1][i-1]=multi(1,nb,periode,i);

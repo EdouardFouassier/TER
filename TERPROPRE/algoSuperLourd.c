@@ -40,8 +40,6 @@ TaskTab algoSuperLourd(TaskTab tasktab,int periodeMax) {
                         i=periodeMax;
                     }
 		        }
-
-               
                 cptplace(tasktab, periodeMax, newPeriode, cptApres);
 
                 for (int i = 0; i < tasktab.nbTask; i++) {
