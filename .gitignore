@@ -8,3 +8,12 @@ TERPROPRE/*
 !TERPROPRE/data
 !TERPROPRE/*.R
 !TERPROPRE/*.pdf
+!TERPROPRE/Makefile
+
+TERPLUS/*
+!TERPLUS/*.c
+!TERPLUS/*.h
+!TERPLUS/data
+!TERPLUS/*.R
+!TERPLUS/*.pdf
+!TERPLUS/Makefile
