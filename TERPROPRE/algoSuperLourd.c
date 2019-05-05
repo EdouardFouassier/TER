@@ -23,7 +23,7 @@ TaskTab algoSuperLourd(TaskTab tasktab,int periodeMax) {
     for (int k = 0; k<tasktab.nbTask /*|| plus de tache*/; k++) {
         //printf("%d\n",k);
         int min = 0;
-
+        int genemin=periodeMax*tasktab.nbTask+1;
         cptplace(tasktab, periodeMax, periode, cptAvant);
         Periode* newPeriode[2];
          int cptApres[tasktab.nbTask];
@@ -48,9 +48,13 @@ TaskTab algoSuperLourd(TaskTab tasktab,int periodeMax) {
                     gene[j] += cptAvant[i] - cptApres[i];
                 }
 
-                if (gene[min] > gene[j]) min = j; 
+                if (genemin > gene[j]){
+                    min = j; 
+                    genemin=gene[j];
+                } 
                 free(newPeriode[0]);
                 free(newPeriode[1]);
+                //printf("tache %d gene %d gene min %d min %d\n",j,gene[j],gene[min],min);
             }           
         }
 
@@ -62,25 +66,26 @@ TaskTab algoSuperLourd(TaskTab tasktab,int periodeMax) {
                 i=periodeMax;
             }
 		}
+        if(tasktab.tab[min].place==-1)tasktab.tab[min].place=-2;
 
-        gene[min] = periodeMax;
+        gene[min] = periodeMax*tasktab.nbTask;
 
         
     }
-
+   // for (int k = 0; k<tasktab.nbTask; k++) if(tasktab.tab[k].place==-2)tasktab.tab[k].place=-1;
     return tasktab;
 }
-
+/*
 int main(int argc,char** argv){
-    printf("Tes morts\n");
     char* nom;
     nom=malloc(sizeof(char)*8);
     sprintf(nom,"data/in%d",0);
-    printf("Truc %s\n",nom);
-	TaskTab tasktab = lireData(nom, 35);
+	TaskTab tasktab = lireData(nom, 50);
     free(nom);
-    algoSuperLourd(tasktab,50000);
+    double completion=completionFF(algoSuperLourd(tasktab,50000));
     afficheTab(tasktab);
+    printf("%f\n",completion);
 	free(tasktab.tab);
 	return 0;
 }
+*/
