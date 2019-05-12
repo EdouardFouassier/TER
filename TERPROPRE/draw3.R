@@ -1,6 +1,6 @@
 #Pour compiler : R CMD BATCH "draw.R"
 
-fileStat = "stat.data"
+fileStat = "stat3.data"
 data = read.table(fileStat)
 attach(data);
 
@@ -11,10 +11,11 @@ TauxASL = V4
 TauxAY = V5
 
 
-plot(nbTask, TauxFF, type = "n", ylim = range(c(TauxFF, TauxAL, TauxASL,TauxAY)), xlab = "Nombre de taches", ylab = "Taux de Réussite")
+plot(nbTask, TauxFF, type = "n", ylim = range(c(TauxFF, TauxAL, TauxASL,TauxAY)), xlab = "Nombre de taches", ylab = "Temps moyen")
 lines(nbTask, TauxFF, col = "blue")
 lines(nbTask, TauxAL, col = "red")
 lines(nbTask, TauxASL, col = "green")
 lines(nbTask, TauxAY, col = "purple")
 legend("topright", col=c("blue", "red", "green","purple"), legend=c("TauxFF", "TauxAL", "TauxASL","tauxAY"), lty=1:1, box.lty=0)
+
 

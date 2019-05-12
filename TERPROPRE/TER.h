@@ -9,6 +9,7 @@
 #include "FirstFit.h"
 #include "gen.h"
 #include "bibli.h"
+#include "algoYannou.h"
 
 
 #include<omp.h>
@@ -16,6 +17,6 @@
 
 
 void nomF(int i,char nom[]);
-double multi(int algo,int nb,int periode,int nbTask);
+stats multi(int algo,int nb,int periode,int nbTask,TaskTab tasktab[nb]);
 
 #endif

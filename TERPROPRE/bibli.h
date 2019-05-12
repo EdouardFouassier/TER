@@ -46,7 +46,8 @@ void freeChaine(Periode* liste);
 void afficheTab(TaskTab tasktab);
 double completionFF(TaskTab tasktab);
 int verifInter(Periode* periode[2],int milieu,int cycle,int delay,int taille);
-
+TaskTab initData(int nbTask,int cycle,int periode);
+TaskTab resetData(TaskTab tasktab);
 
 
 #endif

@@ -3,7 +3,7 @@
 
 Periode* initPeriode(int begin,int end,Periode* next){
 
-	Periode* periode=malloc(sizeof(Periode));
+	Periode* periode=calloc(1,sizeof(Periode));
 	periode->begin=begin;
 	periode->end=end;
 	periode->next=next;
@@ -12,60 +12,83 @@ Periode* initPeriode(int begin,int end,Periode* next){
 
 void copyPeriode(Periode* periode[2],Periode* periodecpy[2]){
 	int aff=0;
-	if(aff)printf("check 5\n");
+	//if(aff)printf("check 5\n");
 	Periode* tmp=periode[0];
-	if(aff)printf("check -4\n");
+	//if(aff)printf("check -4\n");
 	Periode* tmp2;
-	if(aff)printf("check -3\n");
+	//if(aff)printf("check -3\n");
 	Periode* tmp3=NULL;
-	if(aff)printf("check -2\n");
+	//if(aff)printf("check -2\n");
 	tmp2=initPeriode(tmp->begin,tmp->end,NULL);
-	if(aff)printf("check -1\n");
+	//if(aff)printf("check -1\n");
 	periodecpy[0]=tmp2;
-	if(aff)printf("check 0\n");
+	//if(aff)printf("check 0\n");
 	if(tmp->next!=NULL){
-		if(aff)printf("check 1\n");
+		//if(aff)printf("check 1\n");
 		tmp2->next=tmp3;
-		if(aff)printf("check 2\n");
+		//if(aff)printf("check 2\n");
 		tmp=tmp->next;
-		if(aff)printf("check 3\n");
+		//if(aff)printf("check 3\n");
 		tmp3=initPeriode(tmp->begin,tmp->end,NULL);
-		if(aff)printf("check 4\n");
+		//if(aff)printf("check 4\n");
 	
 	while(tmp!=NULL){
-		if(aff)printf("check 5\n");
+		//if(aff)printf("check 5\n");
 		tmp2->next=tmp3;
 		tmp2=tmp2->next;
-		if(aff)printf("check 6\n");
-		tmp=tmp->next;
-		if(aff)printf("check 6.5\n");
-		if(tmp!=NULL)tmp3=initPeriode(tmp->begin,tmp->end,NULL);
-		if(aff)printf("check 7\n");
+		//if(aff)printf("check 6\n");
+		//if(aff)printf("check 6.5\n");
+		if(tmp->next!=NULL){
+			tmp=tmp->next;
+			tmp3=initPeriode(tmp->begin,tmp->end,NULL);
+		}
+		else {
+			tmp=tmp->next;
+			tmp3=NULL;
+		}
+		//if(aff)printf("check 7\n");
 	}
-	}
-	if(aff)printf("check 0.2\n");
+	}	
+	//if(aff)printf("check2 5\n");
 	tmp=periode[1];
+	//if(aff)printf("check2 -4\n");
+
+	//if(aff)printf("check2 -3\n");
+	tmp3=NULL;
+	//if(aff)printf("check2 -2\n");
 	tmp2=initPeriode(tmp->begin,tmp->end,NULL);
+	//if(aff)printf("check2 -1\n");
 	periodecpy[1]=tmp2;
-	if(aff)printf("check 0.3\n");
+	//if(aff)printf("check2 0\n");
 	if(tmp->next!=NULL){
-		if(aff)printf("check 1.2\n");
+		//if(aff)printf("check2 1\n");
 		tmp2->next=tmp3;
-		if(aff)printf("check 2.2\n");
+		//if(aff)printf("check2 2\n");
 		tmp=tmp->next;
-		if(aff)printf("check 3.2\n");
+		//if(aff)printf("check2 3\n");
 		tmp3=initPeriode(tmp->begin,tmp->end,NULL);
-	if(aff)printf("check 4.2\n");
+		//if(aff)printf("check2 4\n");
+	
 	while(tmp!=NULL){
+		//if(aff)printf("check2 5\n");
 		tmp2->next=tmp3;
 		tmp2=tmp2->next;
-		tmp=tmp->next;
-		if(tmp!=NULL)tmp3=initPeriode(tmp->begin,tmp->end,NULL);
-	}}
-	if(aff)printf("check 0.4\n");
+		//if(aff)printf("check2 6\n");
+		//if(aff)printf("check2 6.5\n");
+		if(tmp->next!=NULL){
+			tmp=tmp->next;
+			tmp3=initPeriode(tmp->begin,tmp->end,NULL);
+		}
+		else {
+			tmp=tmp->next;
+			tmp3=NULL;
+		}
+		//if(aff)printf("check2 7\n");
+	}
+	}
 }
 
-Periode* coupePeriode(Periode* periode,int milieu,int cycle,int taille){
+Periode* coupePeriode(Periode* periode,int milieu,int cycle,int taille){ 
 //	affichePeriode(periode);
 	////printf("coupe %d %d\n",milieu,cycle);
 	Periode* tmp=periode;
@@ -170,22 +193,23 @@ Periode* coupePeriode(Periode* periode,int milieu,int cycle,int taille){
 }
 
 int verifPeriode(Periode* periode,int milieu,int cycle,int taille){
-//	//printf("verif %d %d\n",milieu,cycle);
+	int aff=0;
+	//if(aff)printf("verif %d %d\n",milieu,cycle);
 	Periode* tmp=periode;
 	int itmp;
 	while(tmp!=NULL){
 		if(tmp->begin<milieu){	
-			////printf("<");
+			//if(aff)printf("<");
 			if(milieu+cycle<=tmp->end){
-			//	//printf("<");
+				//if(aff)printf("<");
 				return 1;
 			}
 			else if((milieu+cycle)==(tmp->end)+1) {
-				////printf("=");
+				//if(aff)printf("=");
 				return 1;
 			}
 			else if(milieu+cycle>tmp->end && tmp->end==taille && periode->begin==0){
-					////printf(">");
+					//if(aff)printf(">");
 					itmp=cycle-(tmp->end-milieu)-1;
 					if(((periode->end-periode->begin)+1)>itmp){
 						return 1;
@@ -195,17 +219,17 @@ int verifPeriode(Periode* periode,int milieu,int cycle,int taille){
 				}
 		}
 		else if(tmp->begin==milieu){
-				////printf("=");
+				//if(aff)printf("=");
 				if(milieu+cycle<=tmp->end){
-					////printf("<");
+					//if(aff)printf("<");
 					return 1;
 				}
 				else if(milieu+cycle==(tmp->end+1)){
-				//	//printf("=");
+					//if(aff)printf("=");
 					return 1;
 				}
 				else if(milieu+cycle>tmp->end && tmp->end==taille && periode->begin==0){
-				//	//printf(">");
+					//if(aff)printf(">");
 					itmp=cycle-tmp->end-tmp->begin-1;
 					if(((periode->end-periode->begin)+1)>itmp){
 					}else if(((periode->end-periode->begin)+1)==itmp){
@@ -214,7 +238,7 @@ int verifPeriode(Periode* periode,int milieu,int cycle,int taille){
 				}
 		}
 		tmp=tmp->next;
-		////printf("|\n");
+		//if(aff)printf("|\n");
 	}
 	
 	return 0;
@@ -311,11 +335,42 @@ TaskTab lireData(char* nom,int nbTask){
 	return tasktab;
 }
 
+TaskTab initData(int nbTask,int cycle,int periode){
+	TaskTab tasktab;
+	tasktab.nbTask=nbTask;
+	tasktab.tab=malloc(sizeof(task)*nbTask);
+	int val;
+	for(int i=0;i<nbTask;i++){
+		tasktab.tab[i].num=i;
+		tasktab.tab[i].delay=rand()%periode;
+		tasktab.tab[i].cycle[0]=cycle;
+		tasktab.tab[i].cycle[1]=cycle;
+		tasktab.tab[i].place=-1;
+	}
+	return tasktab;
+}
+
+TaskTab resetData(TaskTab tasktab){
+	TaskTab new;
+	//afficheTab(tasktab);
+	new.nbTask=tasktab.nbTask;
+	new.tab=malloc(sizeof(task)*tasktab.nbTask);
+	for(int i=0;i<tasktab.nbTask;i++){
+		new.tab[tasktab.tab[i].num].num=tasktab.tab[i].num;
+		new.tab[tasktab.tab[i].num].delay=tasktab.tab[i].delay;
+		new.tab[tasktab.tab[i].num].cycle[0]=tasktab.tab[i].cycle[0];
+		new.tab[tasktab.tab[i].num].cycle[1]=tasktab.tab[i].cycle[1];
+		new.tab[tasktab.tab[i].num].place=-1;
+	}
+	//free(tasktab.tab);
+	return new;
+}
+
 chaine* initChaine(char* nom,int nbTask){
 	chaine* liste=NULL;
 	FILE* f=fopen(nom,"r");
 	chaine* tmp;
-	int cycle=0;
+	int cycle;
 	int val;
 	if(fscanf(f,"%d\n",&cycle)==1);
 	for(int i=0;i<nbTask;i++){
@@ -358,10 +413,10 @@ void afficheTab(TaskTab tasktab){
 double completionFF(TaskTab tasktab) {
 	double cpt=0;
 	for(int i=0;i< tasktab.nbTask;i++) {
-		if(tasktab.tab[i].place!=-1)cpt++;
+		if(tasktab.tab[i].place>=0)cpt++;
 	}
 	//printf("%f\n",(cpt*100)/tasktab.nbTask);
 	//afficheTab(tasktab);
-	free(tasktab.tab);
+	//free(tasktab.tab);
 	return (cpt*100)/tasktab.nbTask;
 }

@@ -4,10 +4,12 @@
 TaskTab FirstFit(TaskTab tasktab,int periodeMax,int nbTask){
 	Periode* periode[2];
 	int val;
+	//printf("debut FF\n");
 	periode[0]=initPeriode(0,periodeMax-1,NULL);
 	periode[1]=initPeriode(0,periodeMax-1,NULL);
 //	affichePeriode(periode[0]);
 			//	affichePeriode(periode[1]);
+	//afficheTab(tasktab);
 	for(int j=0;j<tasktab.nbTask;j++){
 	//	printf("j=%d\n",j);
 		for(int i=0;i<periodeMax;i++){
@@ -41,12 +43,21 @@ TaskTab FirstFit(TaskTab tasktab,int periodeMax,int nbTask){
 	//freeChaine(place);
 	return tasktab;
 }
+
 /*
 int main(int argc,char** argv){
-	if(argc!=4)return 0;
-	TaskTab tasktab=lireData(argv[1],atoi(argv[3]));
-	if(completionFF(FirstFit(tasktab,atoi(argv[2]),atoi(argv[3])))==100)printf("1");
-	else printf("0");
+     clock_t t1, t2;
+     float temps;
+     srand(time(NULL));
+	TaskTab tasktab=initData(50,1000,50000);
+    t1 = clock();
+    double completion=completionFF(FirstFit(tasktab,50000,50));
+    t2 = clock();
+    temps += (float)(t2-t1)/CLOCKS_PER_SEC;
+    //afficheTab(tasktab);
+    tasktab=resetData(tasktab);
+     afficheTab(tasktab);
+    printf("%f %f\n",completion,temps);
 	free(tasktab.tab);
 	return 0;
 }*/

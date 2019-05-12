@@ -2,9 +2,7 @@
 
 TaskTab algoLourd(TaskTab tasktab,int periodeMax,int nbTask){
 	Periode* periode[2];
-	TaskTab res;
-	res.tab=malloc(sizeof(task)*nbTask);
-	res.nbTask=0;
+	
 	int val,cpt,min=periodeMax,postask=0,posper,tmpposper=-1;
 	periode[0]=initPeriode(0,periodeMax-1,NULL);
 	periode[1]=initPeriode(0,periodeMax-1,NULL);
@@ -40,17 +38,10 @@ TaskTab algoLourd(TaskTab tasktab,int periodeMax,int nbTask){
 			tasktab.tab[postask].place=posper;
 			periode[0]=coupePeriode(periode[0],posper,tasktab.tab[postask].cycle[0],periodeMax-1);
 			periode[1]=coupePeriode(periode[1],(posper+tasktab.tab[postask].delay)%periodeMax,tasktab.tab[postask].cycle[1],periodeMax-1);
-			res.tab[res.nbTask]=tasktab.tab[postask];
-			res.nbTask++;
-			tasktab.tab[postask]=tasktab.tab[tasktab.nbTask-1];
-			tasktab.nbTask--;
+			
 		}
 	}
-	for(int j=0;j<tasktab.nbTask;j++){
-		res.tab[res.nbTask]=tasktab.tab[j];
-		res.nbTask++;
-	}
-	free(tasktab.tab);
+	
 	//double cpt=completionFF(tasktab);
 	//printf("%f\n",cpt );
 	//afficheTab(res);
@@ -58,14 +49,24 @@ TaskTab algoLourd(TaskTab tasktab,int periodeMax,int nbTask){
 	//freeChaine(place);
 	freeChaine(periode[0]);
 	freeChaine(periode[1]);
-	return res;
+	//printf("fin algoLourd\n");
+	return tasktab;
 }
 /*
 int main(int argc,char** argv){
-	if(argc!=4)return 0;
-	TaskTab tasktab=lireData(argv[1],atoi(argv[3]));
-	if(completionFF(algoLourd(tasktab,atoi(argv[2]),atoi(argv[3])))==100)printf("1");
-	else printf("0");
+    clock_t t1, t2;
+     float temps;
+     srand(time(NULL));
+	TaskTab tasktab=initData(50,1000,50000);
+    t1 = clock();
+    TaskTab res=algoLourd(tasktab,50000,50);
+    double completion=completionFF(res);
+    t2 = clock();
+    temps += (float)(t2-t1)/CLOCKS_PER_SEC;
+    //afficheTab(tasktab);
+    tasktab=resetData(tasktab);
+     afficheTab(res);
+    printf("\ncompletion %f temps %f\n",completion,temps);
 	free(tasktab.tab);
 	return 0;
 }*/
