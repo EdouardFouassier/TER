@@ -57,9 +57,12 @@ TaskTab algoSuperLourd(TaskTab tasktab,int periodeMax) {
 
         //if(aff)printf("check3.4\n");
 		        }
+<<<<<<< HEAD
 
                
         //if(aff)printf("check4\n");
+=======
+>>>>>>> e10f6ccf027e0ffb26cdf553a1f6eef52f83b2bd
                 cptplace(tasktab, periodeMax, newPeriode, cptApres);
 
                 for (int i = 0; i < tasktab.nbTask; i++) {

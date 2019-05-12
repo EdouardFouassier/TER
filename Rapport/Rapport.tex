@@ -1,0 +1,166 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[right=2.5cm, left=2.5cm, bottom=4cm, top=3cm]{geometry}
+\usepackage[french]{babel}
+\usepackage{textcomp}
+\usepackage{graphicx}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage{lmodern}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\title{\vspace{13em}{\huge TER}}
+\author{Rémi Navarro - 21401257\\ Edouard Fouassier - 21400750}
+
+\begin{document}
+
+\pagenumbering{gobble}
+\clearpage
+\maketitle\vspace{13em}
+\newpage
+\tableofcontents
+\newpage
+\clearpage
+\pagenumbering{arabic}
+
+\section{Introdution}
+Dans le cadre du module TER du S2 Master Informatique à l’UVSQ, nous avons eu l’occasion de réaliser un projet sous la direction de Mr Yann Strozecki et Mael Guiraud.
+Nous avons choisi, parmi les sujets proposés, le sujet "Algorithme glouton de remplissage" car c'est une sujet qui demande une bonne compréhension de l'algorithmique ce qui nous a beaucoup intéressé.
+
+De nos jour les échanges par les différents réseaux sont centralisés dans des datacenters ou cloud.
+Pour gagner en efficacité il faut minimisé la latence lors de l'envoie d'un message vers un cloud.
+
+L'objectif de ce projet est de concevoir et comparer des algorithmes gloutons qui permettent de placer au mieux des tâches periodiques avec des contraintes portant sur les paires de tâches.
+Pour cela nous utilisons un modèle où les tâches sont envoyés periodiquement et le temps entre l'envoie et la reception est fixe.
+Dans ce modèle il y a deux periodes de taille P, l'envoie du tâches est placé sur la première periode et la réception sur la seconde après un delai.
+Il faut donc réussir a placer un maximum de tâches dans la periode.
+
+\section{Structures de données}
+
+Dans un premier temps nous utilisions les structures suivantes :\\\\
+\indent \textbf{Task} \{ \\
+    \indent \indent entier num \indent\indent//Le numero de la tache pour l'identifier\\
+    \indent \indent entier delay \indent\indent//Le delai avant le retour sur la dexime periode\\
+    \indent \indent entier cycle[2] \indent//Le temps occupé sur la première et deuxième periode\\
+    \indent \indent entier place \indent\indent//La place dans la periode, son début sur la première periode,\\
+    \indent \indent \indent \indent \indent \indent \indent \indent si la tache n'est pas placé cette valeur est à -1..\\
+\indent\}
+\\\\
+\indent \textbf{Chaine} \{ \\
+    \indent \indent Task t   \indent \indent \indent //une tache\\
+    \indent \indent chaine $\uparrow$next \indent //la tache suivante.\\
+\indent\}
+\\\\
+\indent La période était stockée dans deux tableaux d'entier, nous écrivions le numéro de la tache dans la ou les case(s) qu'elle occupait.\\
+Mais comme seul les espaces disponibles de la periode nous interesse, cette structure n'était pas optimale.\\
+Nous sommes donc passé a une structure représentant les espaces libres de la periode sous forme d'une chaine.
+\begin{center}
+    \begin{tabular}{|l|c|c|}			
+    \hline                                              & \textbf{Structure initiale}   & \textbf{Nouvelle structure} \\
+    \hline 	Periode initiale de taille 10               & [0,0,0,0,0,0,0,0,0,0]         &(0,9)		     \\
+    \hline 	Placement d'une tache de taille de en 5 	& [0,0,0,0,0,1,1,0,0,0] 		& (0,4)$\rightarrow$(6,9)   \\
+    \hline
+    \end{tabular}\vspace{1em}
+\end{center}
+\noindent Les taches n'étant plus stockées dans une liste mais dans un tableau, cela a permis de réduire la mémoire utilisée et d'augmenter la taille des tests effectués.\\\\
+La structure Periode est utilisée pour représenter les intervalles disponibles d'une periode.\\\\
+\indent \textbf{Periode} \{ \\
+    \indent \indent entier begin    \indent \indent//Le debut de la periode libre\\
+    \indent \indent entier end \indent \indent //La fin de la periode libre.\\
+    \indent \indent Periode $\uparrow$next \indent //La periode libre suivante.\\
+\indent\}
+\\\\
+La structure Tasktab représente un tableau de tâches.\\\\
+\indent \textbf{Tasktab} \{ \\
+    \indent \indent Task tab    \indent \indent//Le debut de la periode libre\\
+    \indent \indent entier taille \indent   //La fin de la periode libre.\\
+\indent\}
+
+\section{Algorithmes}
+
+Nous avons commencé par immplémenter 
+\begin{algorithm}
+    \caption{FirstFit}
+    \begin{algorithmic}
+    \REQUIRE Tasktab, PeriodeMax
+    \FOR{chaque Task dans Tasktab}
+        \FOR {$i \leftarrow  0$ to PeriodeMax}
+         \IF {task entre dans la periode aller et t entre dans la periode retour après le delay}
+            \STATE $task.place \leftarrow i$
+         \ENDIF
+        \ENDFOR
+    \ENDFOR
+    \RETURN Tasktab
+    \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+    \caption{AlgoLourd}
+    \begin{algorithmic}
+    \REQUIRE Tasktab, PeriodeMax
+    \STATE $min \leftarrow PeriodeMax$
+    \STATE $taskMin \leftarrow 0$
+    \STATE $libreMin \leftarrow 0$
+    \FOR{chaque Task}
+        \FOR {chaque Task t dans Tasktab}
+        \STATE $compteur \leftarrow 0$
+        \STATE $libre \leftarrow 0$
+            \FOR {$i \leftarrow  0$ to PeriodeMax}
+                \IF {t entre dans la periode aller et t entre dans la periode retour après le delay}
+                    \STATE $compteur \leftarrow compteur + 1$
+                    \STATE $libre \leftarrow i$
+                \ENDIF
+            \ENDFOR
+            \IF {compteur <= compteurMin}
+                \STATE $compteur \leftarrow compteurMin$
+                \STATE $taskMin \leftarrow t$
+                \STATE $libreMin \leftarrow libre$
+            \ENDIF
+        \ENDFOR
+        \STATE $taskMin.place \leftarrow libreMin$
+    \ENDFOR
+    \RETURN Tasktab
+    \end{algorithmic}
+\end{algorithm}
+
+
+\begin{algorithm}
+    \caption{AlgoSuperLourd}
+    \begin{algorithmic}
+    \REQUIRE Tasktab, PeriodeMax
+    \STATE $cptAvant[tasktab.nbTask]$
+    \STATE $gene[tasktab.nbTask]$
+    \FOR{chaque Task}
+        \STATE $cptAvant[] \leftarrow cptplace()$ (cptplace() permet de compter le nombre de places disponibles pour chaque tâche)
+        \STATE $cptApres[tasktab.nbTask]$
+        \FOR {chaque Task t dans Tasktab}
+            \STATE $gene[t] \leftarrow 0$
+            \STATE Place t dans la période au premier endroit disponible
+            \STATE $cptApres[] \leftarrow cptplace()$ //cptplace() permet de compter le nombre de places disponibles pour chaque tâche
+            \STATE $gene[t] \leftarrow \sum\limits_{i\leftarrow0}^{Tasktab.nbTask} cptAvant[i] - cptApres[i]$
+            \STATE Retire t de la periode
+        \ENDFOR
+        \STATE Place les Task dans l'ordre croissant de génance
+    \ENDFOR
+    \RETURN Tasktab
+    \end{algorithmic}
+\end{algorithm}
+
+\newpage
+\section{Conclusion}
+
+Dans le cadre du module TER du S2 Master Informatique à l’UVSQ, nous avons eu l’occasion de réaliser un projet sous la direction de Mr Yann Strozecki et Mael Guiraud.
+Nous avons choisi, parmi les sujets proposés, le sujet "Algorithme glouton de remplissage" car c'est une sujet qui demande une bonne compréhension de l'algorithmique ce qui nous a beaucoup intéressé.
+
+De nos jour les échanges par les différents réseaux sont centralisés dans des datacenters ou cloud.
+Pour gagner en efficacité il faut minimisé la latence lors de l'envoie d'un message vers un cloud.
+
+L'objectif de ce projet est de concevoir et comparer des algorithmes gloutons qui permettent de placer au mieux des tâches periodiques avec des contraintes portant sur les paires de tâches.
+Pour cela nous utilisons un modèle où les tâches sont envoyés periodiquement et le temps entre l'envoie et la reception est fixe.
+Dans ce modèle il y a deux periodes de taille P, l'envoie du tâches est placé sur la première periode et la réception sur la seconde après un delai.
+Il faut donc réussir a placer un maximum de tâches dans la periode.
+
+\end{document}
