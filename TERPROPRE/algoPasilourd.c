@@ -1,7 +1,7 @@
 
 #include "algoPasilourd.h"
 
-TaskTab algoYannou(TaskTab tasktab,int periodeMax,int nbTask){
+TaskTab algoPasilourd(TaskTab tasktab,int periodeMax,int nbTask){
 	Periode* periode[2];
 	int cycle=tasktab.tab[0].cycle[0];
 	periode[0]=initPeriode(0,periodeMax-1,NULL);
@@ -37,22 +37,32 @@ TaskTab algoYannou(TaskTab tasktab,int periodeMax,int nbTask){
 	for(int i=0;i<nbTask;i++){
 		printf("%d %d %d\n",val[i],place[i],tasktab.tab[i].delay%cycle);
 	}*/
-	tasktab.tab[place[nbTask-1]].place=((periodeMax-val[nbTask-1])+tasktab.tab[place[nbTask-1]].delay)%periodeMax;
-	periode[0]=coupePeriode(periode[0],((periodeMax-val[nbTask-1])+tasktab.tab[place[nbTask-1]].delay)%periodeMax,tasktab.tab[place[nbTask-1]].cycle[0],periodeMax-1);
-	periode[1]=coupePeriode(periode[1],periodeMax-val[nbTask-1],tasktab.tab[place[nbTask-1]].cycle[1],periodeMax-1);
-				
+	tasktab.tab[place[nbTask-1]].place=((periodeMax-val[nbTask-1])-tasktab.tab[place[nbTask-1]].delay)%periodeMax;
+	periode[0]=coupePeriode(periode[0],((periodeMax-val[nbTask-1])-tasktab.tab[place[nbTask-1]].delay)%periodeMax,tasktab.tab[place[nbTask-1]].cycle[0],periodeMax-1);
+	periode[1]=coupePeriode(periode[1],(periodeMax-val[nbTask-1])%periodeMax,tasktab.tab[place[nbTask-1]].cycle[1],periodeMax-1);
+	int a=(periodeMax-val[nbTask-1])%periodeMax;
+	int b=((periodeMax-val[nbTask-1])-tasktab.tab[place[nbTask-1]].delay)%periodeMax;
+	printf("a %d b %d %d\n",a,b,tasktab.tab[place[nbTask-1]].delay);
+	affichePeriode(periode[0]);
+	affichePeriode(periode[1]);
 	//printf("%d\n",tasktab.tab[place[nbTask-1]].place);
 	int nPlace=1;
 	for(int j=0;j<nbTask;j++){
 	for(int i=nbTask-1;i>=0;i--){
-		if(tasktab.tab[place[i]].place==-1 && verifPeriode(periode[0],((periodeMax-val[i])+tasktab.tab[place[i]].delay+nPlace*cycle)%periodeMax,tasktab.tab[place[i]].cycle[0],periodeMax-1) && verifPeriode(periode[1],((periodeMax-val[i])+nPlace*cycle)%periodeMax,tasktab.tab[place[i]].cycle[1],periodeMax-1)){
-			periode[0]=coupePeriode(periode[0],((periodeMax-val[i])+tasktab.tab[place[i]].delay+nPlace*cycle)%periodeMax,tasktab.tab[place[i]].cycle[0],periodeMax-1);
+		a=((periodeMax-val[i])+nPlace*cycle)%periodeMax;
+		b=((periodeMax-val[i])-tasktab.tab[place[i]].delay+nPlace*cycle)%periodeMax;
+		printf("a %d b %d\n",a,b);
+		if(tasktab.tab[place[i]].place==-1 && verifPeriode(periode[0],((periodeMax-val[i])-tasktab.tab[place[i]].delay+nPlace*cycle)%periodeMax,tasktab.tab[place[i]].cycle[0],periodeMax-1) && verifPeriode(periode[1],((periodeMax-val[i])+nPlace*cycle)%periodeMax,tasktab.tab[place[i]].cycle[1],periodeMax-1)){
+			periode[0]=coupePeriode(periode[0],((periodeMax-val[i])-tasktab.tab[place[i]].delay+nPlace*cycle)%periodeMax,tasktab.tab[place[i]].cycle[0],periodeMax-1);
 			periode[1]=coupePeriode(periode[1],((periodeMax-val[i])+nPlace*cycle)%periodeMax,tasktab.tab[place[i]].cycle[1],periodeMax-1);
-			tasktab.tab[place[i]].place=((periodeMax-val[i])+tasktab.tab[place[i]].delay+nPlace*cycle)%periodeMax;
-			nPlace++;
+			tasktab.tab[place[i]].place=((periodeMax-val[i])-tasktab.tab[place[i]].delay+nPlace*cycle)%periodeMax;
+			affichePeriode(periode[0]);
+			affichePeriode(periode[1]);
 			i=0;
 		}
-	}}
+	}
+	nPlace++;
+	}
 	for(int j=0;j<tasktab.nbTask;j++){
 		if(tasktab.tab[j].place==-1){
 		for(int i=0;i<periodeMax;i++){
@@ -72,21 +82,47 @@ TaskTab algoYannou(TaskTab tasktab,int periodeMax,int nbTask){
 	return tasktab;
 }
 
-/*
+int verif(TaskTab res,int cycle,int periode){
+	int val;
+	for(int i=0;i<res.nbTask;i++){
+		val=(res.tab[i].place+res.tab[i].delay)%periode;
+		if(res.tab[i].place!=-1)
+		for(int j=i+1;j<res.nbTask;j++){
+			if(res.tab[j].place!=-1 && abs(val-(res.tab[j].place+res.tab[j].delay)%periode)<cycle){printf("%d %d\n",i,j);return 1;}
+		}
+	}
+	for(int i=0;i<res.nbTask;i++){
+		val=(res.tab[i].place)%periode;
+		if(res.tab[i].place!=-1)
+		for(int j=i+1;j<res.nbTask;j++){
+			if(res.tab[j].place!=-1 && abs(val-(res.tab[j].place)%periode)<cycle){printf("%d %d\n",i,j);return 1;}
+		}
+	}
+	return 0;
+}
+
+
 int main(int argc,char** argv){
     clock_t t1, t2;
      float temps;
      srand(time(NULL));
-	TaskTab tasktab=initData(50,1000,50000);
+     int cycle=1000;
+     int periode=50000;
+     int nb=50;
+	TaskTab tasktab=initData(nb,cycle,periode);
     t1 = clock();
-    TaskTab res=algoPasilourd(tasktab,50000,50);
+    TaskTab res=algoPasilourd(tasktab,periode,nb);
     double completion=completionFF(res);
     t2 = clock();
+    for(int i=0;i<nb;i++)if(res.tab[i].place!=-1)printf("%d %d %d\n",i,res.tab[i].place,(res.tab[i].place+res.tab[i].delay)%periode);
     temps += (float)(t2-t1)/CLOCKS_PER_SEC;
     //afficheTab(tasktab);
+	
     tasktab=resetData(tasktab);
      afficheTab(res);
     printf("\ncompletion %f temps %f\n",completion,temps);
 	free(tasktab.tab);
+	if(verif(res,cycle,periode))printf("ERROR !!!!\n");
+	else printf("GOOD :)\n");
 	return 0;
-}*/
+}
