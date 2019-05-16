@@ -28,29 +28,30 @@
 
 \section{Introdution}
 Dans le cadre du module TER du S2 Master Informatique à l’UVSQ, nous avons eu l’occasion de réaliser un projet sous la direction de Mr Yann Strozecki et Mael Guiraud.
-Nous avons choisi, parmi les sujets proposés, le sujet "Algorithme glouton de remplissage" car c'est une sujet qui demande une bonne compréhension de l'algorithmique ce qui nous a beaucoup intéressé.
+Nous avons choisi, parmi les sujets proposés, le sujet "Algorithme glouton de remplissage" car c'est un sujet qui demande une bonne compréhension de l'algorithmique ce qui nous a beaucoup intéressé.
 
-De nos jour les échanges par les différents réseaux sont centralisés dans des datacenters ou cloud.
+De nos jours les échanges par les différents réseaux sont centralisés dans des datacenters ou cloud.
 Pour gagner en efficacité il faut minimisé la latence lors de l'envoie d'un message vers un cloud.
 
 L'objectif de ce projet est de concevoir et comparer des algorithmes gloutons qui permettent de placer au mieux des tâches periodiques avec des contraintes portant sur les paires de tâches.
-Pour cela nous utilisons un modèle où les tâches sont envoyés periodiquement et le temps entre l'envoie et la reception est fixe.
-Dans ce modèle il y a deux periodes de taille P, l'envoie du tâches est placé sur la première periode et la réception sur la seconde après un delai.
-Il faut donc réussir a placer un maximum de tâches dans la periode.
+Pour cela nous utilisons un modèle où les tâches sont envoyées periodiquement et le temps entre l'envoie et la reception est fixe.
+Dans ce modèle il y a deux périodes de taille P, l'envoie d'une tâches est placé sur la première période et la réception sur la seconde après un delai.
+Il faut donc réussir à placer un maximum de tâches dans la période.
 
 \section{Structures de données}
 
 Dans un premier temps nous utilisions les structures suivantes :\\\\
-Une structure "Task" représentant les tâches, composé de 3 entier : le numero de la tâche, son delai et sa place qui est initialisé a -1, ainsi qu'un tableau de deux entiers, un pour le cycle aller et un pour le cycle "retour".\\ 
+Une structure "Task" représentant les tâches, composées de 3 entiers : le numero de la tâche, son délai et sa place qui est initialisé a -1, ainsi qu'un tableau de deux entiers, un pour le cycle aller et un pour le cycle retour.\\ 
 \\\\
+Les taches "Task" étaient liées avec la structure chaine.\\\\
 \indent \textbf{Chaine} \{ \\
     \indent \indent Task t   \indent \indent \indent //une tache\\
     \indent \indent chaine $\uparrow$next \indent //la tache suivante.\\
 \indent\}
 \\\\
-\indent La période était stockée dans deux tableaux d'entier, nous écrivions le numéro de la tache dans la ou les case(s) qu'elle occupait.\\
+\indent La période était stockée dans deux tableaux d'entier, nous écrivions le numéro de la tâche dans la ou les case(s) qu'elle occupait.\\
 Mais comme seul les espaces disponibles de la periode nous interesse, cette structure n'était pas optimale.\\
-Nous sommes donc passé a une structure représentant les espaces libres de la periode sous forme d'une chaine.
+Nous sommes donc passé à une structure représentant les espaces libres de la periode sous forme d'une chaine.
 \begin{center}
     \begin{tabular}{|l|c|c|}			
     \hline                                              & \textbf{Structure initiale}   & \textbf{Nouvelle structure} \\
@@ -60,7 +61,7 @@ Nous sommes donc passé a une structure représentant les espaces libres de la p
     \end{tabular}\vspace{1em}
 \end{center}
 \noindent Les taches n'étant plus stockées dans une liste mais dans un tableau, cela a permis de réduire la mémoire utilisée et d'augmenter la taille des tests effectués.\\\\
-La structure Periode est utilisée pour représenter les intervalles disponibles d'une periode.\\\\
+La structure Periode est utilisée pour représenter les intervalles disponibles d'une période.\\\\
 \indent \textbf{Periode} \{ \\
     \indent \indent entier begin    \indent \indent//Le debut de la periode libre\\
     \indent \indent entier end \indent \indent //La fin de la periode libre.\\
@@ -91,7 +92,7 @@ L'algorithme "FirstFit" place dans la période les tâches par ordre d'arrivée,
     \end{algorithmic}
 \end{algorithm}
 
-C'est l'algorithme le plus trivial, il a une compléxité faible en O(n*m) avec n le nombre de tâches et m la taille de la période.\\
+C'est l'algorithme le plus trivial, il a une complexité faible en O(n*m) avec n le nombre de tâches et m la taille de la période.\\
 
 \newpage
 L'algorithme "AlgoLourd" calcul pour chaques tâches son nombre de places disponibles puis place celle ayant le plus de contraintes.\\
@@ -125,7 +126,7 @@ L'algorithme "AlgoLourd" calcul pour chaques tâches son nombre de places dispon
 \end{algorithm}
 
 C'est l'algorithme qui permet de placer le plus de taches parmi nos quatres algorithmes mais il est 30 fois plus long que l'algorithme "FirstFit".\\
-Sa compléxité est O($n^2*m$) avec n le nombre de tâches et m la taille de la période.\\ 
+Sa complexité est O($n^2*m$) avec n le nombre de tâches et m la taille de la période.\\ 
 
 \newpage
 L'algorithme "AlgoSuperLourd" calcul pour chaques tâches celle qui bloque le plus les autres et on place en priorité les moins contraignantes.\\
@@ -156,7 +157,7 @@ L'algorithme "AlgoSuperLourd" calcul pour chaques tâches celle qui bloque le pl
 \end{algorithm}
 
 Dans cet algorithme on utilise la fonction cptplace() qui a une compléxité O(n*m) qui augmente grandement la compléxité de l'algorithme "AlgoSuperLourd".\\
-On obtient donc une compléxité O($n^3*m$), avec n le nombre de tâches et m la taille de la période, ce qui le rend bien moins intéressant que les autres, de plus il place moins de taches.\\
+On obtient donc une complexité O($n^3*m$), avec n le nombre de tâches et m la taille de la période, ce qui le rend bien moins intéressant que les autres, de plus il place moins de taches.\\
 
 \newpage
 L'algorithme "AlgoPasilourd" calcul la valeur delay mod(cycle) de chaques tâches, cela permet de les regrouper sur une période et de bien les ordonner sur l'autre.\\
@@ -189,7 +190,7 @@ L'algorithme "AlgoPasilourd" calcul la valeur delay mod(cycle) de chaques tâche
     \end{algorithmic}
 \end{algorithm}
 
-C'est un algorithme moyen, il est un peu plus long que l'algorithme "FirstFit" et un peu moins efficace.\\
+C'est un algorithme moyen, il est un peu plus long que l'algorithme "FirstFit" et un peu moins éfficace.\\
 Sa complexité est O($n^2*m$) avec n le nombre de tâches et m la taille de la période.\\ 
 
 \section{Analyse}
@@ -197,31 +198,32 @@ Pour chaques tests effectués les paramètres utilisés sont : période de 50000
 \\
 Nous avons réaliser plusieurs mesures :
 \begin{itemize}
-    \item celle du taux de réussite, un algorithme reussi lorsqu'il arrive a placer toutes les tâches données. (cf Figure 1 en Annexe)
-    \item celle du taux de complétion, le taux de completion d'un algorithme est le pourcentage de taches qu'il a reussi à mettre parmi les tâches données. Sur ce graphique, la ligne represente le taux de completion moyen, les points le taux de completion minimum et les losanges le taux de completion maximum. (cf Figure 2 en Annexe)
-    \item celle du temps moyen. (cf Figure 3 en Annexe)
+    \item celle du taux de réussite, un algorithme reussi lorsqu'il arrive à placer toutes les tâches données. (cf Figure 1 en Annexe)
+    \item celle du taux de complétion, le taux de completion d'un algorithme est le pourcentage de tâches qu'il a reussi à mettre parmi les tâches données. Sur ce graphique, la ligne représente le taux de complétion moyen, les points le taux de complétion minimum et les losanges le taux de complétion maximum. (cf Figure 2 en Annexe)
+    \item celle du temps moyen. (cf Figure 3 en Annexe)\\
 \end{itemize}
- Sur la graphique du taux de reussite (figure 1) nous pouvons constaté que l'algoLourd est le plus efficace.\\
- Il parvient à 100\% de réussite jusqu'à 32 tâches sur les 50 possibles, son taux de réussite d'écroit fortement au delà.\\
- Le FirstFit est un peu moins efficace, il conserve un taux de réussite de 100\% jusqu'à 28 tâche mais celui decroit doucement puis chute à 32 tàache.\\
+
+ Sur le graphique du taux de reussite (Figure 1) nous pouvons constater que l'algoLourd est le plus éfficace.\\
+ Il parvient à 100\% de réussite jusqu'à 32 tâches sur les 50 possibles, son taux de réussite d'écroit fortement au-delà.\\
+ Le FirstFit est un peu moins efficace, il conserve un taux de réussite de 100\% jusqu'à 28 tâches mais celui decroit doucement puis chute à 32 tâches.\\
  L'algoPasiLourd a une efficacité proche du FirstFit mais légèrement plus faible et il devient totalement inefficace plus vite.\\
  L'algoSuperLourd a une courbe en dessous des autres à partir de 26 tâches.\\
 
- Sur le graphique suivant (figure 2) nous pouvons constaté que l'allure est la même.\\
- L'algoLours est le plus efficace et parvient à placé 78\% des tâche dans il y a autant de tâches que de places.Ses taux des complétion minimum et maximum sont les moins extrèmes.\\ 
-L'algoSuperLourd est le plus mauvais avec un taux de completion maximum élevé mais un taux minimum très faible.\\
+ Sur le graphique suivant (Figure 2) nous pouvons constaté que l'allure est la même.\\
+L'algoLourd est le plus efficace et parvient à placer 78\% des tâches quand il y a autant de tâches que de places. Ses taux de complétion minimum et maximum sont les moins extrêmes.\\ 
+L'algoSuperLourd est le plus mauvais avec un taux de complétion maximum élevé mais un taux minimum très faible.\\
 
-Le dernier graphe (figure 3) apporte plus d'information, il représente le temps moyen de chaque algorithme.\\
-Nous pouvons voir qu'il y a un algorithme ayant un temps bien superieur aux autres, l'algoSuperLourd, il est jusqu'à 3000 fois plus long.\\
+Le dernier graphe (Figure 3) apporte plus d'information, il représente le temps moyen de chaque algorithme.\\
+Nous pouvons voir qu'il y a un algorithme ayant un temps bien supérieur aux autres, l'algoSuperLourd, il est jusqu'à 3000 fois plus long.\\
 L'algorithme FirstFit et l'algoPasilourd ont un temps similaire (ligne la plus basse) et l'algoLourd est un peu plus long, 30 fois dans le pire des cas.\\
 
 
 
 \section{Conclusion}
 
-Après ces différentes analyse nous pouvons determiné que, parmis ces algorithmes, si nous voulons placé le plus de tâche l'algoLourd est le plus efficace, il parvient a gardé un taux de réussite totale plus longtemps et après cela sont taux de completione st plus élevé.\\
-Si nous voulons un algorithme rapide, le FirstFit est recommandé, il est plus rapide et reste très efficace. \\
-Si nous voulons trouver un juste milieu le FirstFit est le meilleur car il est rapide et à une efficacité proche de l'algoLourd.\\
+Après ces différentes analyse nous pouvons determiné que, parmis ces algorithmes, si nous voulons placer le plus de tâches l'algoLourd est le plus éfficace, il parvient a garder un taux de réussite totale plus longtemps et après cela sont taux de complétion est plus élevé.\\
+Si nous voulons un algorithme rapide, le FirstFit est recommandé, il est plus rapide et reste très éfficace. \\
+Si nous voulons trouver un juste milieu le FirstFit est le meilleur car il est rapide et a une éfficacité proche de l'algoLourd.\\
 
 \newpage
 \section{Annexes}
@@ -229,16 +231,16 @@ Pour chaques graphes les paramètres utilisés sont : période de 50000, cycle d
 \begin{figure}[!ht]
     \center
     \includegraphics[scale = 0.5]{taux_reussite}
-    \caption{Taux de reussite sur 100 essais en fonction du nombre de tâches}
+    \caption{Taux de réussite des algorithmes sur 100 éssais en fonction du nombre de tâches}
 \end{figure} 
 \begin{figure}[!ht]
     \center
     \includegraphics[scale = 0.5]{taux_completion}
-    \caption{Taux de reussite sur 100 essais en fonction du nombre de tâches}
+    \caption{Taux de complétion des algorithmes sur 100 éssais en fonction du nombre de tâches}
 \end{figure}
 \begin{figure}[!ht]
     \center
     \includegraphics[scale = 0.5]{temps_moyen}
-    \caption{Taux de reussite sur 100 essais en fonction du nombre de tâches}
+    \caption{Temps moyen d'éxécution des algorithmes sur 100 éssais en fonction du nombre de tâches}
 \end{figure}
 \end{document}
