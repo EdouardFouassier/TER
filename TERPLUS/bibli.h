@@ -38,12 +38,15 @@ typedef struct periode{
 
 void copyPeriode(Periode* periode[2],Periode* periodecpy[2]);
 Periode* initPeriode(int begin,int end,Periode* next);
+chaine* initChaine(char* nom,int nbTask);
 Periode* coupePeriode(Periode* periode,int milieu,int cycle,int taille);
 int verifPeriode(Periode* periode,int milieu,int cycle,int taille);
 void affichePeriode(Periode* periode);
 TaskTab lireData(char* nom,int nbTask);
 void freeChaine(Periode* liste);
+void freeChaineOld(chaine* liste);
 void afficheTab(TaskTab tasktab);
+int compte(chaine* liste,int nbTask);
 double completionFF(TaskTab tasktab);
 int verifInter(Periode* periode[2],int milieu,int cycle,int delay,int taille);
 

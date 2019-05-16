@@ -58,7 +58,7 @@ int main(int argc,char** argv){
     srand(time(NULL));
 	int periode=atoi(argv[1]),cycle=atoi(argv[3]),nb=atoi(argv[4]),nbTask=atoi(argv[2]);
 	TaskTab tasktab[nb];
-	 maxTask=(periode/cycle)/5;
+	 maxTask=(periode/cycle)/2;
     float temps[4][maxTask];
 	double taux[4][maxTask];
 	double completion[4][maxTask];
@@ -71,12 +71,12 @@ int main(int argc,char** argv){
 
 	//#pragma omp parallel for private(i)
 	for(i=1;i<=maxTask;i++){
-		for(int j=0;j<nb;j++)tasktab[j]=initData(i*5,cycle,periode);
+		for(int j=0;j<nb;j++)tasktab[j]=initData(i*2,cycle,periode);
 		//afficheTab(tasktab[i-1]);
 		//if(aff)printf("check 1 %d\n",i);
 		t1 = clock();
 		//if(aff)printf("check 2\n");
-		s=multi(0,nb,periode,i*5,tasktab);
+		s=multi(0,nb,periode,i*2,tasktab);
 		//if(aff)printf("check 3\n");
 		taux[0][i-1]=s.tauxReussite;
 		//if(aff)printf("check 4\n");
@@ -92,7 +92,7 @@ int main(int argc,char** argv){
 		//if(aff)printf("check 8\n");
 		temps1 +=temps[0][i-1];
 		//if(aff)printf("check 9\n");
-		s=multi(1,nb,periode,i*5,tasktab);
+		s=multi(1,nb,periode,i*2,tasktab);
 		//if(aff)printf("check 10\n");
 		taux[1][i-1]=s.tauxReussite;
 		//if(aff)printf("check 11\n");
@@ -108,7 +108,7 @@ int main(int argc,char** argv){
 		//if(aff)printf("check 15\n");
 		temps2 +=temps[1][i-1];
 		//if(aff)printf("check 16\n");
-		s=multi(2,nb,periode,i*5,tasktab);
+		s=multi(2,nb,periode,i*2,tasktab);
 		//if(aff)printf("check 17\n");
 		taux[2][i-1]=s.tauxReussite;
 		//if(aff)printf("check 18\n");
@@ -124,7 +124,7 @@ int main(int argc,char** argv){
 		//if(aff)printf("check 22\n");
 		temps3 +=temps[2][i-1];
 
-		s=multi(3,nb,periode,i*5,tasktab);
+		s=multi(3,nb,periode,i*2,tasktab);
 		//if(aff)printf("check 17\n");
 		taux[3][i-1]=s.tauxReussite;
 		//if(aff)printf("check 18\n");
@@ -149,9 +149,9 @@ int main(int argc,char** argv){
 	
 
 	for(int i=0;i<maxTask;i++){
-		fprintf(statout,"%d	%f 	%f  %f  %f \n",(i+1)*10,taux[0][i],taux[1][i], taux[2][i],taux[3][i]);
-		fprintf(statout2,"%d %f  %f  %f %f  %f  %f %f  %f  %f %f  %f  %f \n",(i+1)*10,completion[0][i],completion[1][i], completion[2][i],completion[3][i],min[0][i],min[1][i], min[2][i],min[3][i],max[0][i],max[1][i], max[2][i],max[3][i]);
-		fprintf(statout3,"%d %f  %f  %f %f \n",(i+1)*10,temps[0][i],temps[1][i], temps[2][i],temps[3][i]);
+		fprintf(statout,"%d	%f 	%f  %f  %f \n",(i+1)*2,taux[0][i],taux[1][i], taux[2][i],taux[3][i]);
+		fprintf(statout2,"%d %f  %f  %f %f  %f  %f %f  %f  %f %f  %f  %f \n",(i+1)*2,completion[0][i],completion[1][i], completion[2][i],completion[3][i],min[0][i],min[1][i], min[2][i],min[3][i],max[0][i],max[1][i], max[2][i],max[3][i]);
+		fprintf(statout3,"%d %f  %f  %f %f \n",(i+1)*2,temps[0][i],temps[1][i], temps[2][i],temps[3][i]);
 	}
 	fclose(statout);
 	fclose(statout2);

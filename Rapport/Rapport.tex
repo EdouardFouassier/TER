@@ -189,7 +189,7 @@ L'algorithme "AlgoPasilourd" calcul la valeur delay mod(cycle) de chaques tâche
     \end{algorithmic}
 \end{algorithm}
 
-C'est un algorithme moyen, il est un peu plus long que l'algorithme "FirstFit" et un peu moins éfficace.\\
+C'est un algorithme moyen, il est un peu plus long que l'algorithme "FirstFit" et un peu moins efficace.\\
 Sa complexité est O($n^2*m$) avec n le nombre de tâches et m la taille de la période.\\ 
 
 \section{Analyse}
@@ -198,38 +198,47 @@ Pour chaques tests effectués les paramètres utilisés sont : période de 50000
 Nous avons réaliser plusieurs mesures :
 \begin{itemize}
     \item celle du taux de réussite, un algorithme reussi lorsqu'il arrive a placer toutes les tâches données. (cf Figure 1 en Annexe)
-    \item celle du taux de complétion, le taux de completion d'un algorithme est le pourcentage de taches qu'il a reussi à mettre parmi les tâches données. Sur ce graphique, la ligne represente le taux de completion moyen, les points le taux de completion minimum et les losanges le taux de completion maximum.
+    \item celle du taux de complétion, le taux de completion d'un algorithme est le pourcentage de taches qu'il a reussi à mettre parmi les tâches données. Sur ce graphique, la ligne represente le taux de completion moyen, les points le taux de completion minimum et les losanges le taux de completion maximum. (cf Figure 2 en Annexe)
+    \item celle du temps moyen. (cf Figure 3 en Annexe)
 \end{itemize}
+ Sur la graphique du taux de reussite (figure 1) nous pouvons constaté que l'algoLourd est le plus efficace.\\
+ Il parvient à 100\% de réussite jusqu'à 32 tâches sur les 50 possibles, son taux de réussite d'écroit fortement au delà.\\
+ Le FirstFit est un peu moins efficace, il conserve un taux de réussite de 100\% jusqu'à 28 tâche mais celui decroit doucement puis chute à 32 tàache.\\
+ L'algoPasiLourd a une efficacité proche du FirstFit mais légèrement plus faible et il devient totalement inefficace plus vite.\\
+ L'algoSuperLourd a une courbe en dessous des autres à partir de 26 tâches.\\
+
+ Sur le graphique suivant (figure 2) nous pouvons constaté que l'allure est la même.\\
+ L'algoLours est le plus efficace et parvient à placé 78\% des tâche dans il y a autant de tâches que de places.Ses taux des complétion minimum et maximum sont les moins extrèmes.\\ 
+L'algoSuperLourd est le plus mauvais avec un taux de completion maximum élevé mais un taux minimum très faible.\\
+
+Le dernier graphe (figure 3) apporte plus d'information, il représente le temps moyen de chaque algorithme.\\
+Nous pouvons voir qu'il y a un algorithme ayant un temps bien superieur aux autres, l'algoSuperLourd, il est jusqu'à 3000 fois plus long.\\
+L'algorithme FirstFit et l'algoPasilourd ont un temps similaire (ligne la plus basse) et l'algoLourd est un peu plus long, 30 fois dans le pire des cas.\\
+
+
 
 \section{Conclusion}
 
-Dans le cadre du module TER du S2 Master Informatique à l’UVSQ, nous avons eu l’occasion de réaliser un projet sous la direction de Mr Yann Strozecki et Mael Guiraud.
-Nous avons choisi, parmi les sujets proposés, le sujet "Algorithme glouton de remplissage" car c'est une sujet qui demande une bonne compréhension de l'algorithmique ce qui nous a beaucoup intéressé.
-
-De nos jour les échanges par les différents réseaux sont centralisés dans des datacenters ou cloud.
-Pour gagner en efficacité il faut minimisé la latence lors de l'envoie d'un message vers un cloud.
-
-L'objectif de ce projet est de concevoir et comparer des algorithmes gloutons qui permettent de placer au mieux des tâches periodiques avec des contraintes portant sur les paires de tâches.
-Pour cela nous utilisons un modèle où les tâches sont envoyés periodiquement et le temps entre l'envoie et la reception est fixe.
-Dans ce modèle il y a deux periodes de taille P, l'envoie du tâches est placé sur la première periode et la réception sur la seconde après un delai.
-Il faut donc réussir a placer un maximum de tâches dans la periode.
+Après ces différentes analyse nous pouvons determiné que, parmis ces algorithmes, si nous voulons placé le plus de tâche l'algoLourd est le plus efficace, il parvient a gardé un taux de réussite totale plus longtemps et après cela sont taux de completione st plus élevé.\\
+Si nous voulons un algorithme rapide, le FirstFit est recommandé, il est plus rapide et reste très efficace. \\
+Si nous voulons trouver un juste milieu le FirstFit est le meilleur car il est rapide et à une efficacité proche de l'algoLourd.\\
 
 \newpage
 \section{Annexes}
-Pour chaques graphes les paramètres utilisés sont : période de 50000, cycle de taille 1000 et 100 essais
+Pour chaques graphes les paramètres utilisés sont : période de 50000, cycle de taille 1000 et 100 essais.
 \begin{figure}[!ht]
     \center
-    \includegraphics[scale = 0.35]{images/TauxReussite}
+    \includegraphics[scale = 0.5]{taux_reussite}
     \caption{Taux de reussite sur 100 essais en fonction du nombre de tâches}
 \end{figure} 
 \begin{figure}[!ht]
     \center
-    \includegraphics[scale = 0.5]{images/TauxCompletion}
+    \includegraphics[scale = 0.5]{taux_completion}
     \caption{Taux de reussite sur 100 essais en fonction du nombre de tâches}
 \end{figure}
 \begin{figure}[!ht]
     \center
-    \includegraphics[scale = 0.4]{images/TempsMoyen}
+    \includegraphics[scale = 0.5]{temps_moyen}
     \caption{Taux de reussite sur 100 essais en fonction du nombre de tâches}
 \end{figure}
 \end{document}

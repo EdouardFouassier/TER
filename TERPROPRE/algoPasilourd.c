@@ -101,7 +101,7 @@ int verif(TaskTab res,int cycle,int periode){
 	return 0;
 }
 
-
+/*
 int main(int argc,char** argv){
     clock_t t1, t2;
      float temps;
@@ -125,4 +125,4 @@ int main(int argc,char** argv){
 	if(verif(res,cycle,periode))printf("ERROR !!!!\n");
 	else printf("GOOD :)\n");
 	return 0;
-}
+}*/

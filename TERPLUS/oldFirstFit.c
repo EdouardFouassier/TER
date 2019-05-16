@@ -1,4 +1,5 @@
-#include "bibli.c"
+
+#include "oldFirstFit.h"
 
 int oldFirstFit(int periode,int nbTask,chaine* liste){
 	chaine* tmp;
@@ -36,7 +37,7 @@ int oldFirstFit(int periode,int nbTask,chaine* liste){
 	}
 	int cpt=compte(liste,nbTask);
 	//afficheTab(periode,tab);
-	freeChaine(liste);
-	freeChaine(place);
+	freeChaineOld(liste);
+	freeChaineOld(place);
 	return cpt;
 }

@@ -16,6 +16,6 @@ lines(nbTask, TauxFF, col = "blue")
 lines(nbTask, TauxAL, col = "red")
 lines(nbTask, TauxASL, col = "green")
 lines(nbTask, TauxAY, col = "purple")
-legend("topright", col=c("blue", "red", "green","purple"), legend=c("TauxFF", "TauxAL", "TauxASL","tauxAY"), lty=1:1, box.lty=0)
+legend("topright", col=c("blue", "red", "green","purple"), legend=c("FirstFit", "AlgoLourd", "AlgoSuperLourd","algoPasilourd"), lty=1:1, box.lty=0)
 
 

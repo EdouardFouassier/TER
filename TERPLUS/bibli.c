@@ -335,20 +335,42 @@ chaine* initChaine(char* nom,int nbTask){
 void freeChaine(Periode* liste){
 	Periode* tmp;
 	while(liste!=NULL){
+		printf("check 1\n");
 		tmp=liste;
+		printf("check 2\n");
 		liste=liste->next;
+		printf("check 3\n");
 		free(tmp);
+		printf("check 4\n");
 	}
+	printf("check 5\n");
 }
 
-int compte(TaskTab tasktab){
+void freeChaineOld(chaine* liste){
+	chaine* tmp;
+	while(liste!=NULL){
+		//printf("check 1\n");
+		tmp=liste;
+		//printf("check 2\n");
+		liste=liste->next;
+		//printf("check 3\n");
+		free(tmp);
+		//printf("check 4\n");
+	}
+	//printf("check 5\n");
+}
+
+
+
+int compte(chaine* liste,int nbTask){
 	int cpt=0;
-	for(int i=0;i<tasktab.nbTask;i++){
-		if(tasktab.tab->place!=-1)cpt++;
+	chaine* tmp=liste;
+	while(tmp!=NULL){
+		tmp=tmp->next;
+		cpt++;
 	}
-	return cpt;
+	return nbTask-cpt;
 }
-
 
 void afficheTab(TaskTab tasktab){
 	for(int i=0;i< tasktab.nbTask;i++)printf("Tache: %d, delay: %d, cycle: %d, place %d.\n",tasktab.tab[i].num,tasktab.tab[i].delay,tasktab.tab[i].cycle[0],tasktab.tab[i].place);
@@ -358,7 +380,10 @@ void afficheTab(TaskTab tasktab){
 double completionFF(TaskTab tasktab) {
 	double cpt=0;
 	for(int i=0;i< tasktab.nbTask;i++) {
-		if(tasktab.tab[i].place!=-1)cpt++;
+		if(tasktab.tab[i].place>=0){
+			cpt++;
+			printf("%d %d \n",i, tasktab.tab[i].place);
+		}
 	}
 	//printf("%f\n",(cpt*100)/tasktab.nbTask);
 	//afficheTab(tasktab);

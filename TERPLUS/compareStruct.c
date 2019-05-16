@@ -1,10 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include "algoLourd.h"
-#include "FirstFit.h"
-#include "gen.h"
-#include "bibli.h"
+#include "compareStruct.h"
 
 
 double multi(int algo,int nb,int periode,int nbTask){
@@ -12,7 +6,7 @@ double multi(int algo,int nb,int periode,int nbTask){
 	int logi;
 	char* nom;
 	int i=0;
-	Chaine* liste;
+	chaine* liste;
 	//#pragma omp for private (val,nom,i,tasktab)
 	for(i=0;i<nb;i++){
 		if(i==0)logi=1;
@@ -27,7 +21,7 @@ double multi(int algo,int nb,int periode,int nbTask){
 			FirstFit(tasktab,periode,nbTask);
 		}
 		else {
-			liste=iniChaine(nom,nbTask);
+			liste=initChaine(nom,nbTask);
 			oldFirstFit(periode,nbTask,liste);
 		}
 		free(nom);
@@ -59,6 +53,6 @@ int main(int argc,char** argv){
 	}
 	t2 = clock();
 	tempsOld=(double)(t2-t1)/CLOCKS_PER_SEC;
-	double acc=(tempsOld-tempsNew)/tempsOld
+	double acc=(tempsOld-tempsNew)/tempsOld;
 	printf("TempsOld=%f\nTempsNew=%f\nacceleration=%f\n",tempsOld,tempsNew,acc);
 }

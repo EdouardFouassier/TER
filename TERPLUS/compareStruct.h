@@ -5,18 +5,16 @@
 #include <stdlib.h>
 #include <math.h>
 #include "algoLourd.h"
-#include "algoSuperLourd.h"
 #include "FirstFit.h"
+#include "oldFirstFit.h"
 #include "gen.h"
 #include "bibli.h"
-#include "algoPasilourd.h"
 
 
-#include<omp.h>
+#include <omp.h>
 
 
 
-void nomF(int i,char nom[]);
-stats multi(int algo,int nb,int periode,int nbTask,TaskTab tasktab[nb]);
+double multi(int algo,int nb,int periode,int nbTask);
 
 #endif
