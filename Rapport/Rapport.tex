@@ -93,6 +93,7 @@ L'algorithme "FirstFit" place dans la période les tâches par ordre d'arrivée,
 \end{algorithm}
 
 C'est l'algorithme le plus trivial, il a une complexité faible en O(n*m) avec n le nombre de tâches et m la taille de la période.\\
+Un exemple de placement des tâches est fourni en Annexe (cf Figure 1)\\
 
 \newpage
 L'algorithme "AlgoLourd" calcul pour chaques tâches son nombre de places disponibles puis place celle ayant le plus de contraintes.\\
@@ -127,6 +128,7 @@ L'algorithme "AlgoLourd" calcul pour chaques tâches son nombre de places dispon
 
 C'est l'algorithme qui permet de placer le plus de taches parmi nos quatres algorithmes mais il est 30 fois plus long que l'algorithme "FirstFit".\\
 Sa complexité est O($n^2*m$) avec n le nombre de tâches et m la taille de la période.\\ 
+Un exemple de placement des tâches est fourni en Annexe (cf Figure 2)\\
 
 \newpage
 L'algorithme "AlgoSuperLourd" calcul pour chaques tâches celle qui bloque le plus les autres et on place en priorité les moins contraignantes.\\
@@ -158,6 +160,7 @@ L'algorithme "AlgoSuperLourd" calcul pour chaques tâches celle qui bloque le pl
 
 Dans cet algorithme on utilise la fonction cptplace() qui a une compléxité O(n*m) qui augmente grandement la compléxité de l'algorithme "AlgoSuperLourd".\\
 On obtient donc une complexité O($n^3*m$), avec n le nombre de tâches et m la taille de la période, ce qui le rend bien moins intéressant que les autres, de plus il place moins de taches.\\
+Un exemple de placement des tâches est fourni en Annexe (cf Figure 3)\\
 
 \newpage
 L'algorithme "AlgoPasilourd" calcul la valeur delay mod(cycle) de chaques tâches, cela permet de les regrouper sur une période et de bien les ordonner sur l'autre.\\
@@ -192,28 +195,29 @@ L'algorithme "AlgoPasilourd" calcul la valeur delay mod(cycle) de chaques tâche
 
 C'est un algorithme moyen, il est un peu plus long que l'algorithme "FirstFit" et un peu moins éfficace.\\
 Sa complexité est O($n^2*m$) avec n le nombre de tâches et m la taille de la période.\\ 
+Un exemple de placement des tâches est fourni en Annexe (cf Figure 4)\\
 
 \section{Analyse}
 Pour chaques tests effectués les paramètres utilisés sont : période de 50000, cycle de taille 1000 et 100 essais.\\
 \\
 Nous avons réaliser plusieurs mesures :
 \begin{itemize}
-    \item celle du taux de réussite, un algorithme reussi lorsqu'il arrive à placer toutes les tâches données. (cf Figure 1 en Annexe)
-    \item celle du taux de complétion, le taux de completion d'un algorithme est le pourcentage de tâches qu'il a reussi à mettre parmi les tâches données. Sur ce graphique, la ligne représente le taux de complétion moyen, les points le taux de complétion minimum et les losanges le taux de complétion maximum. (cf Figure 2 en Annexe)
-    \item celle du temps moyen. (cf Figure 3 en Annexe)\\
+    \item celle du taux de réussite, un algorithme reussi lorsqu'il arrive à placer toutes les tâches données. (cf Figure 5 en Annexe)
+    \item celle du taux de complétion, le taux de completion d'un algorithme est le pourcentage de tâches qu'il a reussi à mettre parmi les tâches données. Sur ce graphique, la ligne représente le taux de complétion moyen, les points le taux de complétion minimum et les losanges le taux de complétion maximum. (cf Figure 6 en Annexe)
+    \item celle du temps moyen. (cf Figure 7 en Annexe)\\
 \end{itemize}
 
- Sur le graphique du taux de reussite (Figure 1) nous pouvons constater que l'algoLourd est le plus éfficace.\\
+ Sur le graphique du taux de reussite (Figure 5) nous pouvons constater que l'algoLourd est le plus éfficace.\\
  Il parvient à 100\% de réussite jusqu'à 32 tâches sur les 50 possibles, son taux de réussite d'écroit fortement au-delà.\\
  Le FirstFit est un peu moins efficace, il conserve un taux de réussite de 100\% jusqu'à 28 tâches mais celui decroit doucement puis chute à 32 tâches.\\
  L'algoPasiLourd a une efficacité proche du FirstFit mais légèrement plus faible et il devient totalement inefficace plus vite.\\
  L'algoSuperLourd a une courbe en dessous des autres à partir de 26 tâches.\\
 
- Sur le graphique suivant (Figure 2) nous pouvons constaté que l'allure est la même.\\
+ Sur le graphique suivant (Figure 6) nous pouvons constaté que l'allure est la même.\\
 L'algoLourd est le plus efficace et parvient à placer 78\% des tâches quand il y a autant de tâches que de places. Ses taux de complétion minimum et maximum sont les moins extrêmes.\\ 
 L'algoSuperLourd est le plus mauvais avec un taux de complétion maximum élevé mais un taux minimum très faible.\\
 
-Le dernier graphe (Figure 3) apporte plus d'information, il représente le temps moyen de chaque algorithme.\\
+Le dernier graphe (Figure 7) apporte plus d'information, il représente le temps moyen de chaque algorithme.\\
 Nous pouvons voir qu'il y a un algorithme ayant un temps bien supérieur aux autres, l'algoSuperLourd, il est jusqu'à 3000 fois plus long.\\
 L'algorithme FirstFit et l'algoPasilourd ont un temps similaire (ligne la plus basse) et l'algoLourd est un peu plus long, 30 fois dans le pire des cas.\\
 
@@ -227,20 +231,69 @@ Si nous voulons trouver un juste milieu le FirstFit est le meilleur car il est r
 
 \newpage
 \section{Annexes}
-Pour chaques graphes les paramètres utilisés sont : période de 50000, cycle de taille 1000 et 100 essais.
+% \subsection{Exemples d'éxécutions}
+Pour chaques éxécutions des algorithmes, les paramètres sont :
+\begin{itemize}
+    \item Nombre de tâches : 10
+    \item Cycle aller et retour des taches : 2
+    \item Taille de la période : 20
+    \item Délai des tâches :
+    \begin{itemize}
+        \item Tache 0 : 3
+        \item Tache 1 : 6
+        \item Tache 2 : 17
+        \item Tache 3 : 15
+        \item Tache 4 : 13
+        \item Tache 5 : 15
+        \item Tache 6 : 6
+        \item Tache 7 : 12
+        \item Tache 8 : 9
+        \item Tache 9 : 1
+    \end{itemize}
+\end{itemize}
+
 \begin{figure}[!ht]
     \center
-    \includegraphics[scale = 0.5]{taux_reussite}
-    \caption{Taux de réussite des algorithmes sur 100 éssais en fonction du nombre de tâches}
+    \includegraphics[scale = 0.35]{FirstFit}
+    \caption{Placement des tâches avec l'algorithme "FirstFit"}
 \end{figure} 
 \begin{figure}[!ht]
     \center
-    \includegraphics[scale = 0.5]{taux_completion}
-    \caption{Taux de complétion des algorithmes sur 100 éssais en fonction du nombre de tâches}
+    \includegraphics[scale = 0.35]{AlgoLourd}
+    \caption{Placement des tâches avec l'algorithme "AlgoLourd"}
+\end{figure}
+\newpage
+\begin{figure}[!ht]
+    \center
+    \includegraphics[scale = 0.35]{AlgoSuperLourd}
+    \caption{Placement des tâches avec l'algorithme "AlgoSuperLourd"}
 \end{figure}
 \begin{figure}[!ht]
     \center
-    \includegraphics[scale = 0.5]{temps_moyen}
+    \includegraphics[scale = 0.35]{AlgoPasiLourd}
+    \caption{Placement des tâches avec l'algorithme "AlgoPasiLourd"}
+\end{figure}
+
+
+% \subsection{Graphes}
+\newpage
+Pour chaques graphes les paramètres utilisés sont : période de 50000, cycle de taille 1000 et 100 essais.
+\begin{figure}[!ht]
+    \center
+    \includegraphics[scale = 0.4]{taux_reussite}
+    \caption{Taux de réussite des algorithmes sur 100 éssais en fonction du nombre de tâches}
+\end{figure} 
+
+\begin{figure}[!ht]
+    \center
+    \includegraphics[scale = 0.4]{taux_completion}
+    \caption{Taux de complétion des algorithmes sur 100 éssais en fonction du nombre de tâches}
+\end{figure}
+
+\begin{figure}[!ht]
+    \center
+    \includegraphics[scale = 0.4]{temps_moyen}
     \caption{Temps moyen d'éxécution des algorithmes sur 100 éssais en fonction du nombre de tâches}
 \end{figure}
+
 \end{document}
