@@ -193,7 +193,7 @@ L'algorithme "AlgoPasilourd" calcul la valeur delay mod(cycle) de chaques tâche
     \end{algorithmic}
 \end{algorithm}
 
-C'est un algorithme moyen, il est un peu plus long que l'algorithme "FirstFit" et un peu moins éfficace.\\
+C'est un algorithme moyen, il est un peu plus long que l'algorithme "FirstFit" et un peu moins efficace.\\
 Sa complexité est O($n^2*m$) avec n le nombre de tâches et m la taille de la période.\\ 
 Un exemple de placement des tâches est fourni en Annexe (cf Figure 4)\\
 
@@ -207,7 +207,7 @@ Nous avons réaliser plusieurs mesures :
     \item celle du temps moyen. (cf Figure 7 en Annexe)\\
 \end{itemize}
 
- Sur le graphique du taux de reussite (Figure 5) nous pouvons constater que l'algoLourd est le plus éfficace.\\
+ Sur le graphique du taux de reussite (Figure 5) nous pouvons constater que l'algoLourd est le plus efficace.\\
  Il parvient à 100\% de réussite jusqu'à 32 tâches sur les 50 possibles, son taux de réussite d'écroit fortement au-delà.\\
  Le FirstFit est un peu moins efficace, il conserve un taux de réussite de 100\% jusqu'à 28 tâches mais celui decroit doucement puis chute à 32 tâches.\\
  L'algoPasiLourd a une efficacité proche du FirstFit mais légèrement plus faible et il devient totalement inefficace plus vite.\\
@@ -220,19 +220,18 @@ L'algoSuperLourd est le plus mauvais avec un taux de complétion maximum élevé
 Le dernier graphe (Figure 7) apporte plus d'information, il représente le temps moyen de chaque algorithme.\\
 Nous pouvons voir qu'il y a un algorithme ayant un temps bien supérieur aux autres, l'algoSuperLourd, il est jusqu'à 3000 fois plus long.\\
 L'algorithme FirstFit et l'algoPasilourd ont un temps similaire (ligne la plus basse) et l'algoLourd est un peu plus long, 30 fois dans le pire des cas.\\
-
+La différence de temps d'exécution entre les algorithme ayant la même complexité s'explique par la fragmentation de la periode. Certains algorithme génère une periode très fragmenté bien plus longue à parcourir.
 
 
 \section{Conclusion}
 
-Après ces différentes analyse nous pouvons determiné que, parmis ces algorithmes, si nous voulons placer le plus de tâches l'algoLourd est le plus éfficace, il parvient a garder un taux de réussite totale plus longtemps et après cela sont taux de complétion est plus élevé.\\
-Si nous voulons un algorithme rapide, le FirstFit est recommandé, il est plus rapide et reste très éfficace. \\
-Si nous voulons trouver un juste milieu le FirstFit est le meilleur car il est rapide et a une éfficacité proche de l'algoLourd.\\
+Après ces différentes analyse nous pouvons determiné que, parmis ces algorithmes, si nous voulons placer le plus de tâches l'algoLourd est le plus efficace, il parvient a garder un taux de réussite totale plus longtemps et après cela sont taux de complétion est plus élevé.\\
+Si nous voulons un algorithme rapide, le FirstFit est recommandé, il est plus rapide et reste très efficace. Si nous voulons trouver un juste milieu le FirstFit est le meilleur car il est rapide et a une efficacité proche de l'algoLourd.\\
 
 \newpage
 \section{Annexes}
-% \subsection{Exemples d'éxécutions}
-Pour chaques éxécutions des algorithmes, les paramètres sont :
+% \subsection{Exemples d'exécutions}
+Pour chaques exécutions des algorithmes, les paramètres sont :
 \begin{itemize}
     \item Nombre de tâches : 10
     \item Cycle aller et retour des taches : 2
@@ -254,7 +253,7 @@ Pour chaques éxécutions des algorithmes, les paramètres sont :
 
 \begin{figure}[!ht]
     \center
-    \includegraphics[scale = 0.35]{FirstFit}
+    \includegraphics[scale = 0.35]{FirstFit}    
     \caption{Placement des tâches avec l'algorithme "FirstFit"}
 \end{figure} 
 \begin{figure}[!ht]
@@ -281,19 +280,19 @@ Pour chaques graphes les paramètres utilisés sont : période de 50000, cycle d
 \begin{figure}[!ht]
     \center
     \includegraphics[scale = 0.4]{taux_reussite}
-    \caption{Taux de réussite des algorithmes sur 100 éssais en fonction du nombre de tâches}
+    \caption{Taux de réussite des algorithmes sur 100 essais en fonction du nombre de tâches}
 \end{figure} 
 
 \begin{figure}[!ht]
     \center
     \includegraphics[scale = 0.4]{taux_completion}
-    \caption{Taux de complétion des algorithmes sur 100 éssais en fonction du nombre de tâches}
+    \caption{Taux de complétion des algorithmes sur 100 essais en fonction du nombre de tâches}
 \end{figure}
 
 \begin{figure}[!ht]
     \center
     \includegraphics[scale = 0.4]{temps_moyen}
-    \caption{Temps moyen d'éxécution des algorithmes sur 100 éssais en fonction du nombre de tâches}
+    \caption{Temps moyen d'exécution des algorithmes sur 100 essais en fonction du nombre de tâches}
 \end{figure}
 
 \end{document}
