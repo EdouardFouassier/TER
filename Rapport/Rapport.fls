@@ -167,12 +167,13 @@ INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmbx12.tfm
 INPUT /home/edouard/Documents/M1/S2/TER/Rapport/Rapport.toc
 INPUT /home/edouard/Documents/M1/S2/TER/Rapport/Rapport.toc
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmbx10.tfm
-OUTPUT /home/edouard/Documents/M1/S2/TER/Rapport/Rapport.toc
 INPUT /usr/share/texmf/fonts/tfm/public/lm/rm-lmr10.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/lmmi10.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/lmsy10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+OUTPUT /home/edouard/Documents/M1/S2/TER/Rapport/Rapport.toc
+INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmbx12.tfm
 INPUT /home/edouard/Documents/M1/S2/TER/Rapport/FirstFit.png
 INPUT /home/edouard/Documents/M1/S2/TER/Rapport/FirstFit.png
 INPUT /home/edouard/Documents/M1/S2/TER/Rapport/FirstFit.png

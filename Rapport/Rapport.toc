@@ -2,6 +2,10 @@
 \contentsline {section}{\numberline {1}Introdution}{1}
 \contentsline {section}{\numberline {2}Structures de donn\IeC {\'e}es}{2}
 \contentsline {section}{\numberline {3}Algorithmes}{3}
-\contentsline {section}{\numberline {4}Analyse}{7}
-\contentsline {section}{\numberline {5}Conclusion}{8}
-\contentsline {section}{\numberline {6}Annexes}{9}
+\contentsline {subsection}{\numberline {3.1}Algorithme "FirstFit"}{3}
+\contentsline {subsection}{\numberline {3.2}Algorithmes "AlgoLourd"}{4}
+\contentsline {subsection}{\numberline {3.3}Algorithmes "AlgoSuperLourd"}{5}
+\contentsline {subsection}{\numberline {3.4}Algorithme "AlgoPasilourd"}{6}
+\contentsline {section}{\numberline {4}Analyse}{8}
+\contentsline {section}{\numberline {5}Conclusion}{9}
+\contentsline {section}{\numberline {6}Annexes}{10}

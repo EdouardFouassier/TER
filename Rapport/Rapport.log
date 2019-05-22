@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.4.29)  22 MAY 2019 13:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.4.29)  22 MAY 2019 14:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -742,25 +742,25 @@ Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
 ) (/home/edouard/Documents/M1/S2/TER/Rapport/Rapport.aux)
 \openout1 = `Rapport.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 18.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 18.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 19.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 19.
  (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 18.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 19.
  (/usr/share/texmf/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -798,9 +798,9 @@ File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Redefining \degres on input line 18.
-LaTeX Info: Redefining \dots on input line 18.
-LaTeX Info: Redefining \up on input line 18.
+LaTeX Info: Redefining \degres on input line 19.
+LaTeX Info: Redefining \dots on input line 19.
+LaTeX Info: Redefining \up on input line 19.
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count123
@@ -852,194 +852,161 @@ Package grfext Info: Graphics extension search list:
  (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 22.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 23.
  (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 22.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 23.
  (/usr/share/texmf/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 22.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 23.
  (/usr/share/texmf/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 22.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 23.
  (/usr/share/texmf/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 22.
+(Font)              <12> on input line 23.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 22.
+(Font)              <8> on input line 23.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 22.
-LaTeX Font Info:    Try loading font information for U+msa on input line 22.
+(Font)              <6> on input line 23.
+LaTeX Font Info:    Try loading font information for U+msa on input line 23.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 22.
+LaTeX Font Info:    Try loading font information for U+msb on input line 23.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (/home/edouard/Documents/M1/S2/TER/Rapport/Rapport.toc)
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (/home/edouard/Documents/M1/S2/TER/Rapport/Rapport.toc
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10.95> on input line 5.
+)
 \tf@toc=\write3
 \openout3 = `Rapport.toc'.
 
  [2]
-Underfull \hbox (badness 10000) in paragraph at lines 29--40
+Underfull \hbox (badness 10000) in paragraph at lines 30--41
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--40
+Underfull \hbox (badness 10000) in paragraph at lines 30--41
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--40
+Underfull \hbox (badness 10000) in paragraph at lines 30--41
 
  []
 
 [1
 
 ]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 50.
-
-Underfull \hbox (badness 10000) in paragraph at lines 44--56
+Underfull \hbox (badness 10000) in paragraph at lines 45--57
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--56
+Underfull \hbox (badness 10000) in paragraph at lines 45--57
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--56
+Underfull \hbox (badness 10000) in paragraph at lines 45--57
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 64--80
+Underfull \hbox (badness 10000) in paragraph at lines 65--81
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 64--80
+Underfull \hbox (badness 10000) in paragraph at lines 65--81
 
  []
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 120--121
-
- []
-
 <FirstFit.png, id=23, 1200.485pt x 281.05pt>
 File: FirstFit.png Graphic file (type png)
 <use FirstFit.png>
-Package pdftex.def Info: FirstFit.png  used on input line 124.
+Package pdftex.def Info: FirstFit.png  used on input line 128.
 (pdftex.def)             Requested size: 420.17606pt x 98.36896pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 127--128
-
- []
-
-[3 </home/edouard/Documents/M1/S2/TER/Rapport/FirstFit.png>]
-<AlgoLourd.png, id=31, 1203.49625pt x 287.0725pt>
+ [3]
+<AlgoLourd.png, id=29, 1203.49625pt x 287.0725pt>
 File: AlgoLourd.png Graphic file (type png)
 <use AlgoLourd.png>
-Package pdftex.def Info: AlgoLourd.png  used on input line 162.
+Package pdftex.def Info: AlgoLourd.png  used on input line 172.
 (pdftex.def)             Requested size: 421.23pt x 100.47687pt.
- [4 </home/edouard/Documents/M1/S2/TER/Rapport/AlgoLourd.png>]
-<AlgoSuperLourd.png, id=37, 1201.48875pt x 283.0575pt>
+ [4 </home/edouard/Documents/M1/S2/TER/Rapport/FirstFit.png>] [5 </home/edouard/Documents/M1/S2/TER/Rapport/AlgoLourd.png>]
+<AlgoSuperLourd.png, id=43, 1201.48875pt x 283.0575pt>
 File: AlgoSuperLourd.png Graphic file (type png)
 <use AlgoSuperLourd.png>
-Package pdftex.def Info: AlgoSuperLourd.png  used on input line 197.
+Package pdftex.def Info: AlgoSuperLourd.png  used on input line 214.
 (pdftex.def)             Requested size: 420.52737pt x 99.0716pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 167--202
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 232--234
-
- []
-
-<AlgoPasiLourd.png, id=38, 1202.4925pt x 282.05376pt>
+ [6 </home/edouard/Documents/M1/S2/TER/Rapport/AlgoSuperLourd.png>]
+<AlgoPasiLourd.png, id=48, 1202.4925pt x 282.05376pt>
 File: AlgoPasiLourd.png Graphic file (type png)
 <use AlgoPasiLourd.png>
-Package pdftex.def Info: AlgoPasiLourd.png  used on input line 237.
+Package pdftex.def Info: AlgoPasiLourd.png  used on input line 259.
 (pdftex.def)             Requested size: 420.87868pt x 98.72028pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 241--242
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 244--247
-
- []
-
-[5] [6 </home/edouard/Documents/M1/S2/TER/Rapport/AlgoSuperLourd.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 250--251
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 253--258
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 259--262
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 263--266
+Underfull \hbox (badness 10000) in paragraph at lines 268--271
 
  []
 
 [7 </home/edouard/Documents/M1/S2/TER/Rapport/AlgoPasiLourd.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 271--274
+Underfull \hbox (badness 10000) in paragraph at lines 274--275
 
  []
 
-[8]
-<taux_reussite.png, id=56, 946.53625pt x 944.52875pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 277--282
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 283--286
+
+ []
+
+[8] [9]
+<taux_reussite.png, id=59, 946.53625pt x 944.52875pt>
 File: taux_reussite.png Graphic file (type png)
 <use taux_reussite.png>
-Package pdftex.def Info: taux_reussite.png  used on input line 281.
+Package pdftex.def Info: taux_reussite.png  used on input line 305.
 (pdftex.def)             Requested size: 378.60779pt x 377.80481pt.
-<taux_completion.png, id=57, 944.52875pt x 939.51pt>
+<taux_completion.png, id=60, 944.52875pt x 939.51pt>
 File: taux_completion.png Graphic file (type png)
 <use taux_completion.png>
-Package pdftex.def Info: taux_completion.png  used on input line 287.
+Package pdftex.def Info: taux_completion.png  used on input line 311.
 (pdftex.def)             Requested size: 377.80481pt x 375.79733pt.
-<temps_moyen.png, id=58, 948.54375pt x 949.5475pt>
+<temps_moyen.png, id=61, 948.54375pt x 949.5475pt>
 File: temps_moyen.png Graphic file (type png)
 <use temps_moyen.png>
-Package pdftex.def Info: temps_moyen.png  used on input line 293.
+Package pdftex.def Info: temps_moyen.png  used on input line 317.
 (pdftex.def)             Requested size: 379.41077pt x 379.81227pt.
- [9 </home/edouard/Documents/M1/S2/TER/Rapport/taux_reussite.png>] [10 </home/edouard/Documents/M1/S2/TER/Rapport/taux_completion.png>] [11 </home/edouard/Documents/M1/S2/TER/Rapport/temps_moyen.png>] (/home/edouard/Documents/M1/S2/TER/Rapport/Rapport.aux) ) 
+ [10 </home/edouard/Documents/M1/S2/TER/Rapport/taux_reussite.png>] [11 </home/edouard/Documents/M1/S2/TER/Rapport/taux_completion.png>] [12 </home/edouard/Documents/M1/S2/TER/Rapport/temps_moyen.png>] (/home/edouard/Documents/M1/S2/TER/Rapport/Rapport.aux) ) 
 Here is how much of TeX's memory you used:
- 6199 strings out of 492982
- 85805 string characters out of 6134896
- 163367 words of memory out of 5000000
- 9605 multiletter control sequences out of 15000+600000
- 44788 words of font info for 45 fonts, out of 8000000 for 9000
+ 6201 strings out of 492982
+ 85829 string characters out of 6134896
+ 158367 words of memory out of 5000000
+ 9607 multiletter control sequences out of 15000+600000
+ 47786 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,7n,30p,407b,776s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,7n,30p,407b,775s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb>
-Output written on /home/edouard/Documents/M1/S2/TER/Rapport/Rapport.pdf (13 pages, 409630 bytes).
+Output written on /home/edouard/Documents/M1/S2/TER/Rapport/Rapport.pdf (14 pages, 411188 bytes).
 PDF statistics:
- 117 PDF objects out of 1000 (max. 8388607)
- 75 compressed objects within 1 object stream
+ 120 PDF objects out of 1000 (max. 8388607)
+ 77 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  36 words of extra memory for PDF output out of 10000 (max. 10000000)
 
