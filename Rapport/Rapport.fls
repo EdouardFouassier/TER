@@ -196,11 +196,11 @@ INPUT /home/edouard/Documents/M1/S2/TER/Rapport/temps_moyen.png
 INPUT /home/edouard/Documents/M1/S2/TER/Rapport/temps_moyen.png
 INPUT /home/edouard/Documents/M1/S2/TER/Rapport/temps_moyen.png
 INPUT /home/edouard/Documents/M1/S2/TER/Rapport/Rapport.aux
-INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc
-INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc
+INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc
+INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb

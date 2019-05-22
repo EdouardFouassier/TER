@@ -1,7 +1,7 @@
 \babel@toc {french}{}
 \contentsline {section}{\numberline {1}Introdution}{1}
-\contentsline {section}{\numberline {2}Structures de donn\IeC {\'e}es}{1}
-\contentsline {section}{\numberline {3}Algorithmes}{2}
-\contentsline {section}{\numberline {4}Analyse}{5}
-\contentsline {section}{\numberline {5}Conclusion}{6}
-\contentsline {section}{\numberline {6}Annexes}{7}
+\contentsline {section}{\numberline {2}Structures de donn\IeC {\'e}es}{2}
+\contentsline {section}{\numberline {3}Algorithmes}{3}
+\contentsline {section}{\numberline {4}Analyse}{7}
+\contentsline {section}{\numberline {5}Conclusion}{8}
+\contentsline {section}{\numberline {6}Annexes}{9}

@@ -25,25 +25,26 @@
 \newpage
 \clearpage
 \pagenumbering{arabic}
-
 \section{Introdution}
-Dans le cadre du module TER du S2 Master Informatique à l’UVSQ, nous avons eu l’occasion de réaliser un projet sous la direction de Mr Yann Strozecki et Mael Guiraud.
-Nous avons choisi, parmi les sujets proposés, le sujet "Algorithme glouton de remplissage" car c'est un sujet qui demande une bonne compréhension de l'algorithmique ce qui nous a beaucoup intéressé.
+Dans le cadre du module TER du S2 Master Informatique à l’UVSQ, nous avons eu l’occasion de réaliser un projet sous la direction de Mr Yann Strozecki et Mael Guiraud.\\
+Nous avons choisi, parmi les sujets proposés, le sujet "Algorithme glouton de remplissage" car c'est un sujet qui demande une bonne compréhension de l'algorithmique ce qui nous a beaucoup intéressé.\\\\
+De nos jours les échanges par les différents réseaux sont centralisés dans des datacenters ou cloud.\\
+Pour gagner en efficacité il faut minimisé la latence lors de l'envoie d'un message vers un cloud.\\\\
+L'objectif de ce projet est de concevoir et comparer des algorithmes gloutons qui permettent de placer au mieux des tâches periodiques avec des contraintes portant sur les paires de tâches.\\
+Pour cela nous utilisons un modèle où les tâches sont envoyées periodiquement et le temps entre l'envoie et la reception est fixe.\\
+Dans ce modèle il y a deux périodes de taille P, l'envoie d'une tâches est placé sur la première période et la réception sur la seconde après un delai.\\
+Il faut donc réussir à placer un maximum de tâches dans la période.\\
+Une tâche sera défini par un délai et une taille, par la suite la taille sera appelée cycle.\\
+Nos algorithmes prendront en entrée un tableau de tâches et retourneront comme solution ce même tableau avec la place des tâches.\\
+Nous definirons une solution comme reussite si toute les tâches données ont reussie à être placées.\\
 
-De nos jours les échanges par les différents réseaux sont centralisés dans des datacenters ou cloud.
-Pour gagner en efficacité il faut minimisé la latence lors de l'envoie d'un message vers un cloud.
-
-L'objectif de ce projet est de concevoir et comparer des algorithmes gloutons qui permettent de placer au mieux des tâches periodiques avec des contraintes portant sur les paires de tâches.
-Pour cela nous utilisons un modèle où les tâches sont envoyées periodiquement et le temps entre l'envoie et la reception est fixe.
-Dans ce modèle il y a deux périodes de taille P, l'envoie d'une tâches est placé sur la première période et la réception sur la seconde après un delai.
-Il faut donc réussir à placer un maximum de tâches dans la période.
-
+\newpage
 \section{Structures de données}
 
 Dans un premier temps nous utilisions les structures suivantes :\\\\
 Une structure "Task" représentant les tâches, composées de 3 entiers : le numero de la tâche, son délai et sa place qui est initialisé a -1, ainsi qu'un tableau de deux entiers, un pour le cycle aller et un pour le cycle retour.\\ 
-\\\\
-Les taches "Task" étaient liées avec la structure chaine.\\\\
+\\
+Les tâches "Task" étaient liées avec la structure Chaine.\\
 \indent \textbf{Chaine} \{ \\
     \indent \indent Task t   \indent \indent \indent //une tache\\
     \indent \indent chaine $\uparrow$next \indent //la tache suivante.\\
@@ -60,22 +61,46 @@ Nous sommes donc passé à une structure représentant les espaces libres de la 
     \hline
     \end{tabular}\vspace{1em}
 \end{center}
-\noindent Les taches n'étant plus stockées dans une liste mais dans un tableau, cela a permis de réduire la mémoire utilisée et d'augmenter la taille des tests effectués.\\\\
-La structure Periode est utilisée pour représenter les intervalles disponibles d'une période.\\\\
+\noindent Les tâches n'étant plus stockées dans une liste mais dans un tableau, cela a permis de réduire la mémoire utilisée et d'augmenter la taille des tests effectués.\\\\
+La structure Periode est utilisée pour représenter les intervalles disponibles d'une période.\\
+De plus avec cette nouvelle structure, la période est plus plus rapide à parcourir car on ne parcourt que des intervalles et dans le pire des cas, il y a "nombre de tâches placées" + 1 intervalles.\\
+Il y a au maximum $\frac{taille de la periode}{taille des cycles}$, dans ce cas la structure est totalement vide.\\
+Il y a donc au maximum $\frac{taille de la periode}{taille des cycles}+1$ intervalles.\\
 \indent \textbf{Periode} \{ \\
     \indent \indent entier begin    \indent \indent//Le debut de la periode libre\\
     \indent \indent entier end \indent \indent //La fin de la periode libre.\\
     \indent \indent Periode $\uparrow$next \indent //La periode libre suivante.\\
 \indent\}
 \\\\
-La structure Tasktab représente un tableau de tâches.\\\\
+La structure Tasktab représente un tableau de tâches.\\
 \indent \textbf{Tasktab} \{ \\
     \indent \indent Task tab    \indent \indent//Le debut de la periode libre\\
     \indent \indent entier taille \indent   //La fin de la periode libre.\\
 \indent\}
 
+\newpage
 \section{Algorithmes}
 
+Pour chaques éxécutions des algorithmes, les paramètres sont :
+\begin{itemize}
+    \item Nombre de tâches : 10
+    \item Cycle aller et retour des tâches : 2
+    \item Taille de la période : 20
+    \item Délai des tâches :
+    \begin{itemize}
+        \item Tache 0 : 3
+        \item Tache 1 : 6
+        \item Tache 2 : 17
+        \item Tache 3 : 15
+        \item Tache 4 : 13
+        \item Tache 5 : 15
+        \item Tache 6 : 6
+        \item Tache 7 : 12
+        \item Tache 8 : 9
+        \item Tache 9 : 1
+    \end{itemize}
+\end{itemize}
+\vspace{1mm}
 L'algorithme "FirstFit" place dans la période les tâches par ordre d'arrivée, au premier endroit disponible (first fit), si la tâche ne peut pas être placée, on passe à la suivante.
 \begin{algorithm}
     \caption{FirstFit}
@@ -93,9 +118,14 @@ L'algorithme "FirstFit" place dans la période les tâches par ordre d'arrivée,
 \end{algorithm}
 
 C'est l'algorithme le plus trivial, il a une complexité faible en O(n*m) avec n le nombre de tâches et m la taille de la période.\\
-Un exemple de placement des tâches est fourni en Annexe (cf Figure 1)\\
 
-\newpage
+\begin{figure}[!ht]
+    \center
+    \includegraphics[scale = 0.35]{FirstFit}
+    \caption{Placement des tâches avec l'algorithme "FirstFit"}
+\end{figure}
+\noindent On remarque que les tâches qui ne sont pas places sont les dernières, les tâches 7, 8 et 9.\\
+
 L'algorithme "AlgoLourd" calcul pour chaques tâches son nombre de places disponibles puis place celle ayant le plus de contraintes.\\
 \begin{algorithm}
     \caption{AlgoLourd}
@@ -125,12 +155,15 @@ L'algorithme "AlgoLourd" calcul pour chaques tâches son nombre de places dispon
     \RETURN Tasktab
     \end{algorithmic}
 \end{algorithm}
+C'est l'algorithme qui permet de placer le plus de tâches parmi nos quatres algorithmes mais il est 30 fois plus long que l'algorithme "FirstFit".\\
+Sa complexité est O($n^2*m$) avec n le nombre de tâches et m la taille de la période.
+\begin{figure}[!ht]
+    \center
+    \includegraphics[scale = 0.35]{AlgoLourd}
+    \caption{Placement des tâches avec l'algorithme "AlgoLourd"}
+\end{figure}
+\noindent On remarque ici que les tâches 1 et 3 n'ont pas été placées.
 
-C'est l'algorithme qui permet de placer le plus de taches parmi nos quatres algorithmes mais il est 30 fois plus long que l'algorithme "FirstFit".\\
-Sa complexité est O($n^2*m$) avec n le nombre de tâches et m la taille de la période.\\ 
-Un exemple de placement des tâches est fourni en Annexe (cf Figure 2)\\
-
-\newpage
 L'algorithme "AlgoSuperLourd" calcul pour chaques tâches celle qui bloque le plus les autres et on place en priorité les moins contraignantes.\\
 \begin{algorithm}
     \caption{AlgoSuperLourd}
@@ -157,13 +190,16 @@ L'algorithme "AlgoSuperLourd" calcul pour chaques tâches celle qui bloque le pl
     \RETURN Tasktab
     \end{algorithmic}
 \end{algorithm}
-
 Dans cet algorithme on utilise la fonction cptplace() qui a une compléxité O(n*m) qui augmente grandement la compléxité de l'algorithme "AlgoSuperLourd".\\
-On obtient donc une complexité O($n^3*m$), avec n le nombre de tâches et m la taille de la période, ce qui le rend bien moins intéressant que les autres, de plus il place moins de taches.\\
-Un exemple de placement des tâches est fourni en Annexe (cf Figure 3)\\
-
-\newpage
+On obtient donc une complexité O($n^3*m$), avec n le nombre de tâches et m la taille de la période, ce qui le rend bien moins intéressant que les autres, de plus il place moins de tâches.\\
+\begin{figure}
+    \center
+    \includegraphics[scale = 0.35]{AlgoSuperLourd}
+    \caption{Placement des tâches avec l'algorithme "AlgoSuperLourd"}
+\end{figure}
+On remarque que les tâches 2 et 7 n'ont pas été placées.\\ 
 L'algorithme "AlgoPasilourd" calcul la valeur delay mod(cycle) de chaques tâches, cela permet de les regrouper sur une période et de bien les ordonner sur l'autre.\\
+
 \begin{algorithm}
     \caption{AlgoPasilourd}
     \begin{algorithmic}
@@ -194,8 +230,15 @@ L'algorithme "AlgoPasilourd" calcul la valeur delay mod(cycle) de chaques tâche
 \end{algorithm}
 
 C'est un algorithme moyen, il est un peu plus long que l'algorithme "FirstFit" et un peu moins éfficace.\\
-Sa complexité est O($n^2*m$) avec n le nombre de tâches et m la taille de la période.\\ 
-Un exemple de placement des tâches est fourni en Annexe (cf Figure 4)\\
+Sa complexité est O($n^2*m$) avec n le nombre de tâches et m la taille de la période.\\
+
+\begin{figure}[!ht]
+    \center
+    \includegraphics[scale = 0.35]{AlgoPasiLourd}
+    \caption{Placement des tâches avec l'algorithme "AlgoPasiLourd"}
+\end{figure}
+
+On remarque que les tâches 1 et 6 n'ont pas été placées.\\
 
 \section{Analyse}
 Pour chaques tests effectués les paramètres utilisés sont : période de 50000, cycle de taille 1000 et 100 essais.\\
@@ -231,52 +274,7 @@ Si nous voulons trouver un juste milieu le FirstFit est le meilleur car il est r
 
 \newpage
 \section{Annexes}
-% \subsection{Exemples d'éxécutions}
-Pour chaques éxécutions des algorithmes, les paramètres sont :
-\begin{itemize}
-    \item Nombre de tâches : 10
-    \item Cycle aller et retour des taches : 2
-    \item Taille de la période : 20
-    \item Délai des tâches :
-    \begin{itemize}
-        \item Tache 0 : 3
-        \item Tache 1 : 6
-        \item Tache 2 : 17
-        \item Tache 3 : 15
-        \item Tache 4 : 13
-        \item Tache 5 : 15
-        \item Tache 6 : 6
-        \item Tache 7 : 12
-        \item Tache 8 : 9
-        \item Tache 9 : 1
-    \end{itemize}
-\end{itemize}
 
-\begin{figure}[!ht]
-    \center
-    \includegraphics[scale = 0.35]{FirstFit}
-    \caption{Placement des tâches avec l'algorithme "FirstFit"}
-\end{figure} 
-\begin{figure}[!ht]
-    \center
-    \includegraphics[scale = 0.35]{AlgoLourd}
-    \caption{Placement des tâches avec l'algorithme "AlgoLourd"}
-\end{figure}
-\newpage
-\begin{figure}[!ht]
-    \center
-    \includegraphics[scale = 0.35]{AlgoSuperLourd}
-    \caption{Placement des tâches avec l'algorithme "AlgoSuperLourd"}
-\end{figure}
-\begin{figure}[!ht]
-    \center
-    \includegraphics[scale = 0.35]{AlgoPasiLourd}
-    \caption{Placement des tâches avec l'algorithme "AlgoPasiLourd"}
-\end{figure}
-
-
-% \subsection{Graphes}
-\newpage
 Pour chaques graphes les paramètres utilisés sont : période de 50000, cycle de taille 1000 et 100 essais.
 \begin{figure}[!ht]
     \center

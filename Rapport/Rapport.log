@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.4.29)  17 MAY 2019 14:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.4.29)  22 MAY 2019 13:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -889,154 +889,154 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \openout3 = `Rapport.toc'.
 
  [2]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 49.
-
-Underfull \hbox (badness 10000) in paragraph at lines 43--55
+Underfull \hbox (badness 10000) in paragraph at lines 29--40
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 43--55
+Underfull \hbox (badness 10000) in paragraph at lines 29--40
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 43--55
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 43--55
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 43--55
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 63--76
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 63--76
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 63--76
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 63--76
+Underfull \hbox (badness 10000) in paragraph at lines 29--40
 
  []
 
 [1
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 95--97
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10.95> on input line 50.
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--56
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--56
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--56
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 64--80
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 64--80
 
  []
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 129--132
+Underfull \hbox (badness 10000) in paragraph at lines 120--121
 
  []
 
-[3]
-Underfull \hbox (badness 10000) in paragraph at lines 161--164
-
- []
-
-[4]
-Underfull \hbox (badness 10000) in paragraph at lines 196--199
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 201--204
-
- []
-
-[5]
-Underfull \hbox (badness 10000) in paragraph at lines 207--208
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 210--215
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 216--219
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 220--223
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 228--231
-
- []
-
-[6]
-<FirstFit.png, id=40, 1200.485pt x 281.05pt>
+<FirstFit.png, id=23, 1200.485pt x 281.05pt>
 File: FirstFit.png Graphic file (type png)
 <use FirstFit.png>
-Package pdftex.def Info: FirstFit.png  used on input line 257.
+Package pdftex.def Info: FirstFit.png  used on input line 124.
 (pdftex.def)             Requested size: 420.17606pt x 98.36896pt.
-<AlgoLourd.png, id=42, 1203.49625pt x 287.0725pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 127--128
+
+ []
+
+[3 </home/edouard/Documents/M1/S2/TER/Rapport/FirstFit.png>]
+<AlgoLourd.png, id=31, 1203.49625pt x 287.0725pt>
 File: AlgoLourd.png Graphic file (type png)
 <use AlgoLourd.png>
-Package pdftex.def Info: AlgoLourd.png  used on input line 262.
+Package pdftex.def Info: AlgoLourd.png  used on input line 162.
 (pdftex.def)             Requested size: 421.23pt x 100.47687pt.
- [7 </home/edouard/Documents/M1/S2/TER/Rapport/FirstFit.png> </home/edouard/Documents/M1/S2/TER/Rapport/AlgoLourd.png>]
-<AlgoSuperLourd.png, id=49, 1201.48875pt x 283.0575pt>
+ [4 </home/edouard/Documents/M1/S2/TER/Rapport/AlgoLourd.png>]
+<AlgoSuperLourd.png, id=37, 1201.48875pt x 283.0575pt>
 File: AlgoSuperLourd.png Graphic file (type png)
 <use AlgoSuperLourd.png>
-Package pdftex.def Info: AlgoSuperLourd.png  used on input line 268.
+Package pdftex.def Info: AlgoSuperLourd.png  used on input line 197.
 (pdftex.def)             Requested size: 420.52737pt x 99.0716pt.
-<AlgoPasiLourd.png, id=50, 1202.4925pt x 282.05376pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 167--202
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 232--234
+
+ []
+
+<AlgoPasiLourd.png, id=38, 1202.4925pt x 282.05376pt>
 File: AlgoPasiLourd.png Graphic file (type png)
 <use AlgoPasiLourd.png>
-Package pdftex.def Info: AlgoPasiLourd.png  used on input line 273.
+Package pdftex.def Info: AlgoPasiLourd.png  used on input line 237.
 (pdftex.def)             Requested size: 420.87868pt x 98.72028pt.
- [8 </home/edouard/Documents/M1/S2/TER/Rapport/AlgoSuperLourd.png> </home/edouard/Documents/M1/S2/TER/Rapport/AlgoPasiLourd.png>]
+
+Underfull \hbox (badness 10000) in paragraph at lines 241--242
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--247
+
+ []
+
+[5] [6 </home/edouard/Documents/M1/S2/TER/Rapport/AlgoSuperLourd.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 250--251
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 253--258
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 259--262
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 263--266
+
+ []
+
+[7 </home/edouard/Documents/M1/S2/TER/Rapport/AlgoPasiLourd.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 271--274
+
+ []
+
+[8]
 <taux_reussite.png, id=56, 946.53625pt x 944.52875pt>
 File: taux_reussite.png Graphic file (type png)
 <use taux_reussite.png>
-Package pdftex.def Info: taux_reussite.png  used on input line 283.
+Package pdftex.def Info: taux_reussite.png  used on input line 281.
 (pdftex.def)             Requested size: 378.60779pt x 377.80481pt.
 <taux_completion.png, id=57, 944.52875pt x 939.51pt>
 File: taux_completion.png Graphic file (type png)
 <use taux_completion.png>
-Package pdftex.def Info: taux_completion.png  used on input line 289.
+Package pdftex.def Info: taux_completion.png  used on input line 287.
 (pdftex.def)             Requested size: 377.80481pt x 375.79733pt.
 <temps_moyen.png, id=58, 948.54375pt x 949.5475pt>
 File: temps_moyen.png Graphic file (type png)
 <use temps_moyen.png>
-Package pdftex.def Info: temps_moyen.png  used on input line 295.
+Package pdftex.def Info: temps_moyen.png  used on input line 293.
 (pdftex.def)             Requested size: 379.41077pt x 379.81227pt.
  [9 </home/edouard/Documents/M1/S2/TER/Rapport/taux_reussite.png>] [10 </home/edouard/Documents/M1/S2/TER/Rapport/taux_completion.png>] [11 </home/edouard/Documents/M1/S2/TER/Rapport/temps_moyen.png>] (/home/edouard/Documents/M1/S2/TER/Rapport/Rapport.aux) ) 
 Here is how much of TeX's memory you used:
  6199 strings out of 492982
  85805 string characters out of 6134896
- 158367 words of memory out of 5000000
+ 163367 words of memory out of 5000000
  9605 multiletter control sequences out of 15000+600000
  44788 words of font info for 45 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,7n,30p,416b,778s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb>
-Output written on /home/edouard/Documents/M1/S2/TER/Rapport/Rapport.pdf (13 pages, 407192 bytes).
+ 41i,7n,30p,407b,776s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb>
+Output written on /home/edouard/Documents/M1/S2/TER/Rapport/Rapport.pdf (13 pages, 409630 bytes).
 PDF statistics:
  117 PDF objects out of 1000 (max. 8388607)
  75 compressed objects within 1 object stream
